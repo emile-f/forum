@@ -1,0 +1,26 @@
+{
+  "name": "forum",
+  "version": "1.0.0",
+  "description": "Project 2 for CS5610 Web Development",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emile-f/forum.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "express",
+    "mongodb",
+    "node-js"
+  ],
+  "author": "emile-f, cozenom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emile-f/forum/issues"
+  },
+  "homepage": "https://github.com/emile-f/forum#readme"
+}
