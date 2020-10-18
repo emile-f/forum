@@ -11,8 +11,9 @@ const readUsers = () => {
         if (err) {
           console.error("error: readUsers", err);
           reject("Failed to get all users from database");
+        } else {
+          resolve(docs);
         }
-        resolve(docs);
       });
   });
 };
@@ -38,8 +39,12 @@ const addUser = (doc) => {
       .connection.collection("user")
       .insertOne(Object.assign({ active: 1 }, doc))
       .then((result, err) => {
-        console.error("error: addUser", err);
-        resolve(result);
+        if (err) {
+          console.error("error: addUser", err);
+          reject("Failed to add user to database");
+        } else {
+          resolve(result);
+        }
       });
   });
 };
