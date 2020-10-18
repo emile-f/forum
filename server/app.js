@@ -1,43 +1,38 @@
-const mongoClient = require("./config/mongoClient");
-const User = require("./models/user");
-const userController = require("./controller/user.controller");
-// const app = require("./app");
+const expressServer = require("./server");
 const config = require("./config/config");
-// const logger = require("./config/logger");
+const mongoClient = require("./config/mongoClient");
 
 let server;
 
+// On startup make connection with the mongo db
+mongoClient.initConnection().then(() => {
+  server = expressServer.listen(config.port, () => {
+    console.info(`Listening to port ${config.port}`);
+  });
+});
 
+const exitHandler = () => {
+  if (server) {
+    server.close(() => {
+      console.info("Server closed");
+      process.exit(1);
+    });
+  } else {
+    process.exit(1);
+  }
+};
 
-// mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
-//   logger.info('Connected to MongoDB');
-//   server = app.listen(config.port, () => {
-//     logger.info(`Listening to port ${config.port}`);
-//   });
-// });
+const unexpectedErrorHandler = (error) => {
+  console.error(error);
+  exitHandler();
+};
 
-// const exitHandler = () => {
-//   if (server) {
-//     server.close(() => {
-//       logger.info('Server closed');
-//       process.exit(1);
-//     });
-//   } else {
-//     process.exit(1);
-//   }
-// };
+process.on("uncaughtException", unexpectedErrorHandler);
+process.on("unhandledRejection", unexpectedErrorHandler);
 
-// const unexpectedErrorHandler = (error) => {
-//   logger.error(error);
-//   exitHandler();
-// };
-
-// process.on('uncaughtException', unexpectedErrorHandler);
-// process.on('unhandledRejection', unexpectedErrorHandler);
-
-// process.on('SIGTERM', () => {
-//   logger.info('SIGTERM received');
-//   if (server) {
-//     server.close();
-//   }
-// });
+process.on("SIGTERM", () => {
+  console.info("SIGTERM received");
+  if (server) {
+    server.close();
+  }
+});

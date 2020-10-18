@@ -26,9 +26,7 @@ const mongoDb = (uri, dbName) => {
 const initConnection = async () => {
   return new Promise(async (resolve, reject) => {
     const uri = config.mongo.uri;
-    console.log("uri", uri);
     database = await mongoDb(uri, "forum");
-    console.log("mongo", database);
     resolve();
   });
 };

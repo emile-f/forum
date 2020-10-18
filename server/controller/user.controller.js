@@ -6,9 +6,12 @@ const readUsers = () => {
     mongoClient
       .getDatabase()
       .connection.collection("user")
-      .find({ active: 1 })
+      .find()
       .toArray((err, docs) => {
-        console.error("error: readUsers", err);
+        if (err) {
+          console.error("error: readUsers", err);
+          reject("Failed to get all users from database");
+        }
         resolve(docs);
       });
   });

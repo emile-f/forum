@@ -1,10 +1,11 @@
-console.log("Starting server here");
-
 const express = require("express");
 const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
 const cors = require("cors");
 const httpStatus = require("http-status");
+
+// routes
+const accountRoute = require("./routes/account.route");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 });
 
 // user api requests
+app.use("/accounts", accountRoute);
 
 // posts api requests
 
