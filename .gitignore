@@ -1,3 +1,8 @@
+# Don't commit the config file
+# we will use env. variables on the server
+config.json
+
+
 # Logs
 logs
 *.log
