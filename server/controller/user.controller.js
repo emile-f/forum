@@ -1,12 +1,14 @@
 const mongoClient = require("../config/mongoClient");
+const User = require("../models/user");
 
 // only read active users
+// don't return password field
 const readUsers = () => {
   return new Promise((resolve, reject) => {
     mongoClient
       .getDatabase()
       .connection.collection("user")
-      .find()
+      .find({}, { projection: { _id: 0, hashed_password: 0 } })
       .toArray((err, docs) => {
         if (err) {
           console.error("error: readUsers", err);
@@ -19,12 +21,15 @@ const readUsers = () => {
 };
 
 // only read active users
+// don't return password field
 const readUser = (doc) => {
   return new Promise((resolve, reject) => {
     mongoClient
       .getDatabase()
       .connection.collection("user")
-      .find(Object.assign({ active: 1 }, doc))
+      .find(Object.assign({ active: 1 }, doc), {
+        projection: { _id: 0, hashed_password: 0 },
+      })
       .toArray((err, docs) => {
         console.error("error: readUser", err);
         resolve(docs);
@@ -43,7 +48,14 @@ const addUser = (doc) => {
           console.error("error: addUser", err);
           reject("Failed to add user to database");
         } else {
-          resolve(result);
+          if (result.ops && result.ops.length && result.ops.length > 0) {
+            const user = User.from(result.ops[0]);
+            // remove password before sending back
+            user.hashed_password = undefined;
+            resolve(user);
+          } else {
+            resolve(undefined);
+          }
         }
       });
   });
