@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "service",
+      "name": "server",
       "program": "${workspaceFolder}/server/app.js",
       "env": {
         "ENV": "localhost"
