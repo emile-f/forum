@@ -2,6 +2,8 @@
 # we will use env. variables on the server
 config.json
 
+# react build folder
+build
 
 # Logs
 logs
