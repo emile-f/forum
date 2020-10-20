@@ -7,7 +7,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Admin from "./views/admin";
 import Feed from "./views/feed";
 import Thread from "./views/thread";
-import NotFound from "./views/notFound";
+import NotFound from "./views/not-found";
 import NewThread from "./views/new-thread";
 import Profile from "./views/profile";
 
