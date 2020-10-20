@@ -1,14 +1,45 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import * as serviceWorker from "./serviceWorker";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+
+import Admin from "./views/admin";
+import Feed from "./views/feed";
+import Thread from "./views/thread";
+import NotFound from "./views/notFound";
+import NewThread from "./views/new-thread";
+import Profile from "./views/profile";
+
+import Header from "./components/header";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Feed />
+        </Route>
+        <Route path="/admin">
+          <Admin />
+        </Route>
+        <Route path="/thread/new_thread">
+          <NewThread />
+        </Route>
+        <Route path="/thread/:thread">
+          <Thread />
+        </Route>
+        <Route path="/user/:username">
+          <Profile />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
