@@ -4,6 +4,7 @@
   "description": "Project 2 for CS5610 Web Development",
   "main": "server/server.js",
   "author": "emile-f, cozenom",
+  "homepage": "/forum",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/emile-f/forum/issues"
