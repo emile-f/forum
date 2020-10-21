@@ -3,8 +3,10 @@ import "./thread.css";
 import { withRouter } from "react-router-dom";
 
 class Thread extends Component {
+  // Initialize all variables
   constructor(props) {
     super(props);
+    // Get the thread id from the query parameters
     this.id = this.props.match.params.thread;
   }
 

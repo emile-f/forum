@@ -4,6 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
+// Pages
 import Admin from "./views/admin";
 import Feed from "./views/feed";
 import Thread from "./views/thread";
@@ -11,6 +12,7 @@ import NotFound from "./views/not-found";
 import NewThread from "./views/new-thread";
 import Profile from "./views/profile";
 
+// Components
 import Header from "./components/header";
 
 ReactDOM.render(

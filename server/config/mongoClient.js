@@ -9,6 +9,7 @@ const mongoDb = (uri, dbName) => {
   const currentMongo = {};
   const options = {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   };
 
   currentMongo.client = new MongoClient(uri, options);

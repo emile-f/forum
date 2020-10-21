@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 
+// Change the page in router to the correct querystring
+// uses react-router linking
+// we can restyle this to be in a nav bar
 class Header extends Component {
   render() {
     return (
