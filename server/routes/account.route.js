@@ -41,7 +41,7 @@ const signup = (req, res) => {
     res.status(500); // 500 Internal Server Error
     res.json({
       "status-code": 500,
-      message: err || "No request body found",
+      message: "No request body found",
     });
   }
 };

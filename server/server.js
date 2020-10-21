@@ -9,6 +9,9 @@ const accountRoute = require("./routes/account.route");
 
 const app = express();
 
+// enable cors
+app.use(cors());
+
 // parse json request body
 app.use(express.json());
 
@@ -20,10 +23,6 @@ app.use(mongoSanitize());
 
 // gzip compression
 app.use(compression());
-
-// enable cors
-app.use(cors());
-app.options("*", cors());
 
 app.get("/", (req, res) => {
   res.send("Hello from form api");
