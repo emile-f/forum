@@ -7,6 +7,7 @@ const httpStatus = require("http-status");
 // routes
 const accountRoute = require("./routes/account.route");
 
+// Express app
 const app = express();
 
 // enable cors
@@ -24,6 +25,7 @@ app.use(mongoSanitize());
 // gzip compression
 app.use(compression());
 
+// Default route
 app.get("/", (req, res) => {
   res.send("Hello from form api");
 });
@@ -41,4 +43,5 @@ app.use((req, res, next) => {
   res.send("Not found");
 });
 
+// Export Express router
 module.exports = app;

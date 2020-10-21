@@ -1,5 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 
+// Class for the user model
+// the id is generate d-when you create a new user
 class User {
   constructor(name, hashed_password, email) {
     this.name = name;
@@ -17,4 +19,5 @@ class User {
   }
 }
 
+// Export user class
 module.exports = User;

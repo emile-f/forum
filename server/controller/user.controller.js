@@ -5,6 +5,12 @@ const User = require("../models/user");
 // don't return password field
 const readUsers = () => {
   return new Promise((resolve, reject) => {
+    // Get database
+    // Set the table to user
+    // Find all users but exclude the following fields: _id (mongoDb generated id), hashed_password
+    // Convert the data to array
+    // Check if we have a successful response
+    // If we have error we will return an error response
     mongoClient
       .getDatabase()
       .connection.collection("user")
@@ -48,10 +54,14 @@ const addUser = (doc) => {
           console.error("error: addUser", err);
           reject("Failed to add user to database");
         } else {
+          // The mongo success result is on the following data structure
+          // result.ops: this is an array
           if (result.ops && result.ops.length && result.ops.length > 0) {
+            // Create user of result and remove password
             const user = User.from(result.ops[0]);
             // remove password before sending back
             user.hashed_password = undefined;
+            // Return inserted user
             resolve(user);
           } else {
             resolve(undefined);
@@ -64,6 +74,7 @@ const addUser = (doc) => {
 /*
   location: structure to recognize the data to update on for example id
   updateValue: json structure to update
+  Example of updateValue: { $set: { test2: 2 } }
 */
 const updateUser = (location, updateValue) => {
   return new Promise((resolve, reject) => {
@@ -91,8 +102,10 @@ const deleteUser = (location) => {
   });
 };
 
+// Real delete for development only
 const deleteDocument = () => {};
 
+// Export all database functions
 module.exports = {
   readUsers,
   addUser,
@@ -102,33 +115,42 @@ module.exports = {
 };
 
 // Example database function for user table
+/*
 const test = async () => {
+
   // init connection
   await mongoClient.initConnection();
+
   // read entire table
   const before = await userController.readUsers();
   console.log("Users before insert", JSON.stringify(before));
+
   // insert new in table
   const insert = await userController.addUser({ test: "emile3" });
   console.log("User after insert", JSON.stringify(insert));
+
   // read entire table
   const after = await userController.readUsers();
   console.log("Users after insert", JSON.stringify(after));
+
   // update new user
   const update = await userController.updateUser(
     { test: "emile3" },
     { $set: { test2: 2 } }
   );
   console.log("after update", JSON.stringify(update));
+
   // read entire table
   const read = await userController.readUsers();
   console.log("Users after update", JSON.stringify(read));
+
   // get single user
   const single = await userController.readUsers({ test: "emile3" });
   console.log("User after", JSON.stringify(single));
+
   // delete single user
   const deleteUser = await userController.deleteUser({ test: "emile3" });
   console.log("User delete after", JSON.stringify(deleteUser));
-};
 
-// test();
+};
+*/

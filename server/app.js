@@ -11,6 +11,7 @@ mongoClient.initConnection().then(() => {
   });
 });
 
+// On unexpected error correctly close the server
 const exitHandler = () => {
   if (server) {
     server.close(() => {

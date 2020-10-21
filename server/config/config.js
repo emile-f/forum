@@ -8,7 +8,7 @@ let env =
 
 // read config file when developing
 let configJson = {};
-if (env == "localhost") {
+if (env === "localhost") {
   try {
     // Get current folder
     configJson = JSON.parse(
