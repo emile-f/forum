@@ -37,8 +37,12 @@ const readUser = (doc) => {
         projection: { _id: 0, hashed_password: 0 },
       })
       .toArray((err, docs) => {
-        console.error("error: readUser", err);
-        resolve(docs);
+        if (err) {
+          console.error("error: readUser", err);
+          reject(err);
+        } else {
+          resolve(docs);
+        }
       });
   });
 };
@@ -83,7 +87,9 @@ const updateUser = (location, updateValue) => {
       .connection.collection("user")
       .updateOne(location, updateValue)
       .then((result, err) => {
-        console.error("error: updateUser", err);
+        if (err) {
+          console.error("error: updateUser", err);
+        }
         if (result.result.ok && result.result.ok > 0) {
           resolve(result);
         } else {

@@ -3,6 +3,23 @@ const userController = require("../controller/user.controller");
 const User = require("../models/user");
 const router = express.Router();
 
+const doesUserExist = (email) => {
+  return new Promise((resolve, reject) => {
+    userController
+      .readUser({ email })
+      .then((doc) => {
+        if (doc && doc.length && doc.length > 0) {
+          reject("User already exists");
+        } else {
+          resolve();
+        }
+      })
+      .catch(() => {
+        reject("Failed to check if user exits");
+      });
+  });
+};
+
 // Get all users
 // Promise based functions readUsers is our database function
 // Api: GET /accounts/all
@@ -29,21 +46,27 @@ const signup = (req, res) => {
     // Create user object from the POST body
     const newUser = User.from(req.body);
     console.log("newUser", newUser);
-
-    // Add user and return the added user
-    userController
-      .addUser(newUser)
-      .then((users) => {
-        console.log("users", users);
-        res.json(users);
+    // Check if the email is used already
+    doesUserExist(newUser.email)
+      .then(() => {
+        // Add user and return the added user
+        userController
+          .addUser(newUser)
+          .then((users) => {
+            res.json(users);
+          })
+          .catch((err) => {
+            // Failed to add user
+            res.status(500); // 500 Internal Server Error
+            res.json({
+              "status-code": 500,
+              message: err || "failed to signup",
+            });
+          });
       })
       .catch((err) => {
-        // Failed to add user
-        res.status(500); // 500 Internal Server Error
-        res.json({
-          "status-code": 500,
-          message: err || "failed to signup",
-        });
+        res.status(202);
+        res.send(err);
       });
   } else {
     // No form data found

@@ -9,6 +9,7 @@ class Register extends Component {
       last_name: "",
       email: "",
       password: "",
+      error: undefined,
     };
     console.log("this.props", this.props);
   }
@@ -29,6 +30,8 @@ class Register extends Component {
         if (response.status === 200) {
           console.log("registration successful");
           this.props.success(response.data);
+        } else if (response.status === 202) {
+          this.setState({ error: response.data });
         }
       })
       .catch((error) => {
@@ -88,6 +91,10 @@ class Register extends Component {
         <br />
 
         <button onClick={() => this.handleClick()}>Submit</button>
+
+        <br />
+
+        <div>{this.state.error ? this.state.error : ""}</div>
       </div>
     );
   }
