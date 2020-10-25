@@ -1,0 +1,172 @@
+const Thread = require("../models/thread");
+const mongoClient = require("../config/mongoClient");
+
+const readThreads = () => {
+  return new Promise((resolve, reject) => {
+    // Merge 2 collection on userId
+    // then remove all unnecessary data
+    mongoClient
+      .getDatabase()
+      .connection.collection("thread")
+      .aggregate([
+        {
+          $lookup: {
+            from: "user",
+            localField: "userId",
+            foreignField: "id",
+            as: "user",
+          },
+        },
+        {
+          $unwind: "$user",
+        },
+        {
+          $project: {
+            "user._id": 0,
+            "user.active": 0,
+            "user.hashed_password": 0,
+            "user.created": 0,
+            "user.updated": 0,
+            "user.email": 0,
+            posts: 0,
+            _id: 0,
+          },
+        },
+      ])
+      .toArray((err, docs) => {
+        if (err) {
+          console.error("error: readThreads", err);
+          reject("Failed to get all threads from database");
+        } else {
+          resolve(docs);
+        }
+      });
+  });
+};
+
+const readThread = (id) => {
+  return new Promise((resolve, reject) => {
+    // Merge 2 collection on userId
+    // then remove all unnecessary data
+    // source for posts filtering and merging user
+    // http://www.petecorey.com/blog/2020/01/29/mongodb-object-array-lookup-aggregation/
+    mongoClient
+      .getDatabase()
+      .connection.collection("thread")
+      .aggregate([
+        { $match: { id: id } },
+        {
+          $lookup: {
+            from: "user",
+            localField: "userId",
+            foreignField: "id",
+            as: "user",
+          },
+        },
+        {
+          $unwind: "$user",
+        },
+        {
+          $project: {
+            _id: 0,
+            userId: 0,
+            user: {
+              _id: 0,
+              active: 0,
+              hashed_password: 0,
+              created: 0,
+              updated: 0,
+              email: 0,
+            },
+            "posts.threadId": 0,
+            "posts.id": 0,
+          },
+        },
+        {
+          $unwind: "$posts",
+        },
+        {
+          $lookup: {
+            from: "user",
+            localField: "posts.userId",
+            foreignField: "id",
+            as: "posts.user",
+          },
+        },
+        {
+          $project: {
+            "posts.user": {
+              _id: 0,
+              active: 0,
+              hashed_password: 0,
+              created: 0,
+              updated: 0,
+              email: 0,
+            },
+          },
+        },
+        {
+          $group: {
+            _id: "$_id",
+            root: { $mergeObjects: "$$ROOT" },
+            posts: { $push: "$posts" },
+          },
+        },
+        {
+          $replaceRoot: {
+            newRoot: {
+              $mergeObjects: ["$root", "$$ROOT"],
+            },
+          },
+        },
+        {
+          $project: {
+            root: 0,
+            "posts.userId": 0,
+            _id: 0,
+          },
+        },
+      ])
+      .toArray((err, docs) => {
+        if (err) {
+          console.error("error: readThreads", err);
+          reject("Failed to get all threads from database");
+        } else {
+          resolve(docs);
+        }
+      });
+  });
+};
+
+const addThread = (thread) => {
+  return new Promise((resolve, reject) => {
+    mongoClient
+      .getDatabase()
+      .connection.collection("thread")
+      .insertOne(thread)
+      .then((result, err) => {
+        if (err) {
+          console.error("error: addThread", err);
+          reject("Failed to add thread to database");
+        } else {
+          // The mongo success result is on the following data structure
+          // result.ops: this is an array
+          if (result.ops && result.ops.length && result.ops.length > 0) {
+            // Create user of result and remove password
+            const thread = Thread.from(result.ops[0]);
+            // Return inserted user
+            resolve(thread);
+          } else {
+            resolve(undefined);
+          }
+        }
+      });
+  });
+};
+
+// Export all database functions
+module.exports = {
+  addThread,
+  readThreads,
+  readThread,
+};

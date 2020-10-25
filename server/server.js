@@ -6,6 +6,7 @@ const httpStatus = require("http-status");
 
 // routes
 const accountRoute = require("./routes/account.route");
+const ThreadRoute = require("./routes/thread.route");
 
 // Express app
 const app = express();
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 
 // user api requests
 app.use("/accounts", accountRoute);
+app.use("/thread", ThreadRoute);
 
 // posts api requests
 
