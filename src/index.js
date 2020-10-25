@@ -4,6 +4,9 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
+// Route
+import AuthenticatedRoute from "./components/authenticated-route";
+
 // Pages
 import Admin from "./views/admin";
 import Feed from "./views/feed";
@@ -11,6 +14,7 @@ import Thread from "./views/thread";
 import NotFound from "./views/not-found";
 import NewThread from "./views/new-thread";
 import Profile from "./views/profile";
+import Authenticate from "./views/authenticate";
 
 // Components
 import Header from "./components/header";
@@ -20,24 +24,13 @@ ReactDOM.render(
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/">
-          <Feed />
-        </Route>
-        <Route path="/admin">
-          <Admin />
-        </Route>
-        <Route path="/thread/new_thread">
-          <NewThread />
-        </Route>
-        <Route path="/thread/:thread">
-          <Thread />
-        </Route>
-        <Route path="/user/:username">
-          <Profile />
-        </Route>
-        <Route path="*">
-          <NotFound />
-        </Route>
+        <Route exact path="/" component={Feed} />
+        <AuthenticatedRoute path="/admin" component={Admin} />
+        <AuthenticatedRoute path="/thread/new_thread" component={NewThread} />
+        <Route path="/thread/:thread" component={Thread} />
+        <AuthenticatedRoute path="/user/:username" component={Profile} />
+        <Route path="/login" component={Authenticate} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Router>
   </React.StrictMode>,

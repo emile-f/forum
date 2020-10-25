@@ -6,6 +6,20 @@ import { Link } from "react-router-dom";
 // uses react-router linking
 // we can restyle this to be in a nav bar
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: undefined,
+      created: undefined,
+      updated: undefined,
+      email: undefined,
+      id: undefined,
+    };
+
+  }
+
+  updateUser = () => {};
+
   render() {
     return (
       <div className="header">

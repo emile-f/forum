@@ -8,3 +8,17 @@ import env from "../config/env";
 export const getAllUsers = () => {
   return axios.get(env[process.env.NODE_ENV].api + "/accounts/all");
 };
+
+export const signInUser = (payload) => {
+  return axios.post(
+    env[process.env.NODE_ENV].api + "/accounts/signin",
+    payload
+  );
+};
+
+export const signUpUser = (payload) => {
+  return axios.post(
+    env[process.env.NODE_ENV].api + "/accounts/signup",
+    payload
+  );
+};
