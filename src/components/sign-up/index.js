@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { signUpUser } from "../../api/user";
+import sha256 from "crypto-js/sha256";
 
 class Register extends Component {
   constructor(props) {
@@ -38,6 +39,10 @@ class Register extends Component {
         console.log(error);
       });
   }
+
+  handlePassword = (pass) => {
+    this.setState({ password: sha256(pass).toString() });
+  };
 
   render() {
     return (
@@ -85,7 +90,7 @@ class Register extends Component {
           name="password"
           placeholder="Enter your Password"
           type="password"
-          onChange={(event) => this.setState({ password: event.target.value })}
+          onChange={(event) => this.handlePassword(event.target.value)}
         ></input>
 
         <br />
