@@ -4,7 +4,6 @@ const Thread = require("../models/thread");
 const Post = require("../models/post");
 const router = express.Router();
 
-// Api: POST /accounts/signup
 const addThread = (req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
@@ -80,8 +79,42 @@ const getOneThread = (req, res) => {
     });
 };
 
+const addPost = (req, res) => {
+  if (req && req.body) {
+    // Do more validation -> check if userId exists
+
+    // Create post object
+    const post = new Post(req.body.threadId, req.body.message, req.body.userId);
+    console.log("post", post);
+
+    // Add user and return the added user
+    threadController
+      .addPost(post)
+      .then((post) => {
+        res.json(post);
+      })
+      .catch((err) => {
+        // Failed to add Post
+        res.status(500); // 500 Internal Server Error
+        res.json({
+          "status-code": 500,
+          message: err || "failed to add post",
+        });
+      });
+  } else {
+    // No form data found
+    res.status(500); // 500 Internal Server Error
+    res.json({
+      "status-code": 500,
+      message: "No request body found",
+    });
+  }
+};
+
 // Routes
 router.post("/add", addThread);
+
+router.post("/add-post", addPost);
 
 // example: localhost:3000/thread/all
 router.get("/all", getAllThreads);
