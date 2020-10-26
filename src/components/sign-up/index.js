@@ -6,8 +6,7 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: "",
-      last_name: "",
+      name: "",
       email: "",
       password: "",
       error: undefined,
@@ -18,7 +17,7 @@ class Register extends Component {
   handleClick() {
     // TODO: validate values
     var payload = {
-      name: this.state.first_name + " " + this.state.last_name,
+      name: this.state.name,
       email: this.state.email,
       hashed_password: this.state.password,
     };
@@ -50,26 +49,13 @@ class Register extends Component {
         <h2>Sign-up</h2>
 
         <input
-          id="first-name"
-          alt="first-name"
+          id="name"
+          alt="name"
           autoFocus
-          name="first-name"
-          placeholder="Enter your First Name"
+          name="name"
+          placeholder="Enter your account Name"
           type="text"
-          onChange={(event) =>
-            this.setState({ first_name: event.target.value })
-          }
-        ></input>
-
-        <br />
-
-        <input
-          id="last-name"
-          alt="last-name"
-          name="last-name"
-          placeholder="Enter your Last Name"
-          type="text"
-          onChange={(event) => this.setState({ last_name: event.target.value })}
+          onChange={(event) => this.setState({ name: event.target.value })}
         ></input>
 
         <br />
