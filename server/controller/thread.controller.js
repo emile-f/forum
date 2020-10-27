@@ -165,7 +165,7 @@ const addThread = (thread) => {
   });
 };
 
-const addPost = (post) => {
+const addPost = (post) => {  
   return new Promise((resolve, reject) => {
     mongoClient
       .getDatabase()
@@ -189,10 +189,36 @@ const addPost = (post) => {
   });
 };
 
+const checkThreadID = (id) => {
+  return new Promise((resolve, reject) => {
+    mongoClient
+      .getDatabase()
+      .connection.collection("thread")
+      .find(
+        id,
+        {
+          projection: { _id: 0, posts: 0 },
+        }
+      )
+      .toArray((err, docs) => {
+        if (err) {
+          console.error("error: readThread", err);
+          reject(err);
+        } else {
+          console.log(docs)
+          resolve(docs);
+        }
+      });
+  });
+};
+
+
+
 // Export all database functions
 module.exports = {
   addThread,
   readThreads,
   readThread,
   addPost,
+  checkThreadID
 };
