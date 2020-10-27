@@ -41,7 +41,7 @@ const getAllUsers = (req, res) => {
 };
 
 // Api: POST /accounts/signup
-const signup = (req, res) => {
+const signUp = (req, res) => {
   if (req && req.body) {
     // Create user object from the POST body
     const newUser = User.from(req.body);
@@ -78,9 +78,42 @@ const signup = (req, res) => {
   }
 };
 
+const signIn = (req, res) => {
+  if (req && req.body) {
+    const email = req.body.email;
+    const hashed_password = req.body.password;
+    userController
+      .readUser({ email, hashed_password })
+      .then((doc) => {
+        if (doc && doc.length && doc.length > 0) {
+          res.json(doc[0]);
+        } else {
+          res.status(202);
+          res.send("No user combination found with this email and password");
+        }
+      })
+      .catch(() => {
+        // Failed to sign-in user
+        res.status(500); // 500 Internal Server Error
+        res.json({
+          "status-code": 500,
+          message: "failed to sign-in",
+        });
+      });
+  } else {
+    // No form data found
+    res.status(500); // 500 Internal Server Error
+    res.json({
+      "status-code": 500,
+      message: "No request body found",
+    });
+  }
+};
+
 // Routes
 router.get("/all", getAllUsers);
-router.post("/signup", signup);
+router.post("/signup", signUp);
+router.post("/signin", signIn);
 
 // Export user router
 module.exports = router;

@@ -75,6 +75,7 @@ const addUser = (doc) => {
   });
 };
 
+
 /*
   location: structure to recognize the data to update on for example id
   updateValue: json structure to update

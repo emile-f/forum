@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { signInUser } from "../../api/user";
+import sha256 from "crypto-js/sha256";
 
 class Login extends Component {
   constructor(props) {
@@ -7,7 +8,9 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      error: undefined,
     };
+    console.log("this.props", this.props);
   }
 
   handleClick() {
@@ -15,20 +18,25 @@ class Login extends Component {
       email: this.state.username,
       password: this.state.password,
     };
+
     signInUser(payload)
       .then((response) => {
         console.log(response);
-        if (response.data.code === 200) {
+        if (response.status === 200) {
           console.log("Login successful");
-        } else if (response.data.code === 204) {
-          console.log("Username password do not match");
-          alert("username password do not match");
+          this.props.success(response.data);
+        } else if (response.status === 202) {
+          this.setState({ error: response.data });
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }
+
+  handlePassword = (pass) => {
+    this.setState({ password: sha256(pass).toString() });
+  };
 
   render() {
     return (
@@ -51,7 +59,7 @@ class Login extends Component {
           name="password"
           placeholder="Enter your Password"
           type="password"
-          onChange={(event) => this.setState({ password: event.target.value })}
+          onChange={(event) => this.handlePassword(event.target.value)}
         ></input>
         <br />
         <button onClick={(event) => this.handleClick(event)}>Submit</button>
