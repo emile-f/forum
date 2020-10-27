@@ -41,14 +41,14 @@ const doesThreadExistByThreadId = (id) => {
 const addThread = async(req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
-    if (req.body.userId.length != 36){
+    if (!req.body.userId || req.body.userId.length != 36){
       console.log("Invalid userID length: \nLength: ", req.body.userId.length)
       res.status(400); // Invalid ID length
     } else {
-      const Idexists = await doesUserExistByUserId(req.body.userId)
-      if (!Idexists){
+      const idExists = await doesUserExistByUserId(req.body.userId)
+      if (!idExists){
         console.log("userID doesn't exist")
-        res.status(400); // ID doesn't exist
+        return res.status(400); // ID doesn't exist
       }
     }
 
@@ -126,26 +126,26 @@ const getOneThread = (req, res) => {
 const addPost = async (req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
-    if (req.body.userId.length != 36){
-      console.log("Invalid userID length: \nLength: ", req.body.userId.length)
-      res.status(400); // Invalid userID length
+    if (!req.body.userId || req.body.userId.length !== 36) {
+      console.log("Invalid UserID length: \nLength: ", req.body.userId.length);
+      return res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
-      const userIdexists = await doesUserExistByUserId(req.body.userId)
-      if (!userIdexists){
-        console.log("userID doesn't exist")
-        res.status(400); // ID doesn't exist
+      const idExists = await doesUserExistByUserId(req.body.userId);
+      if (!idExists) {
+        console.log("userID doesn't exist");
+        return res.status(400).send("UserId is not valid"); // ID doesn't exist
       }
     }
 
     // Do more validation -> check if postID exists
-    if (req.body.threadId.length != 36){
+    if (!req.body.threadId || req.body.threadId.length != 36){
       console.log("Invalid threadID length: \nLength: ", req.body.threadId.length)
       res.status(400); // Invalid ID length
     } else {
-      const threadIdexists = await doesThreadExistByThreadId(req.body.threadId)
-      if (!threadIdexists){
+      const idExists = await doesThreadExistByThreadId(req.body.threadId)
+      if (!idExists){
         console.log("threadID doesn't exist")
-        res.status(400); // ID doesn't exist
+        return res.status(400); // ID doesn't exist
       }
     } // TODO
 
