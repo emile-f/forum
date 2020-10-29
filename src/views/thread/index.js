@@ -1,27 +1,37 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./thread.css";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
-class Thread extends Component {
-  // Initialize all variables
-  constructor(props) {
-    super(props);
-    // Get the thread id from the query parameters
-    this.id = this.props.match.params.thread;
-  }
+const ThreadPage = (props) => {
+  // declare states
+  const [id, setId] = useState(undefined);
+  const [redirectToHome, setRedirectToHome] = useState(false);
 
-  componentDidMount() {
-    console.log("this.props", this.props);
-    console.log("id", this.id);
-  }
+  useEffect(() => {
+    if (
+      props.location &&
+      props.location.state &&
+      props.location.state.threadId
+    ) {
+      console.log("this.props", props);
+      setId(props.location.state.threadId);
+      console.log("id", id);
+    } else {
+      setRedirectToHome(true);
+    }
+  }, []);
 
-  render() {
-    return (
-      <div className="thread">
-        <h1>thread page here: id: {this.id}</h1>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {redirectToHome === true ? (
+        <Redirect to="/" />
+      ) : (
+        <div className="thread">
+          <h1>thread page here: id: {id}</h1>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default withRouter(Thread);
+export default withRouter(ThreadPage);
