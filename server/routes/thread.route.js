@@ -1,54 +1,20 @@
 const express = require("express");
 const threadController = require("../controller/thread.controller");
-const userController = require("../controller/user.controller");
 const Thread = require("../models/thread");
 const Post = require("../models/post");
 const router = express.Router();
-const doesUserExistByUserId = (id) => {
-  return new Promise((resolve, reject) => {
-    userController
-      .readUser({ id })
-      .then((doc) => {
-        if (doc && doc.length && doc.length > 0) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-      .catch(() => {
-        reject("Failed to check if user exits");
-      });
-  });
-};
-const doesThreadExistByThreadId = (id) => {
-  return new Promise((resolve, reject) => {
-    threadController
-      .checkThreadID( {id} )
-      .then((doc) => {
-        console.log(doc , doc.length , doc.length > 0)
-        if (doc && doc.length && doc.length > 0) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-      .catch(() => {
-        reject("Failed to check if thread exists");
-      });
-  });
-};
+const helper = require("./helper");
 
-const addThread = async(req, res) => {
+const addThread = async (req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
-    if (!req.body.userId || req.body.userId.length != 36){
-      console.log("Invalid userID length: \nLength: ", req.body.userId.length)
-      res.status(400); // Invalid ID length
+    if (!req.body.userId || req.body.userId.length !== 36) {
+      res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
-      const idExists = await doesUserExistByUserId(req.body.userId)
-      if (!idExists){
-        console.log("userID doesn't exist")
-        return res.status(400); // ID doesn't exist
+      const idExists = await helper.doesUserExistByUserId(req.body.userId);
+      if (!idExists) {
+        console.log("userID doesn't exist");
+        return res.status(400).send("UserId is not valid"); // ID doesn't exist
       }
     }
 
@@ -56,7 +22,7 @@ const addThread = async(req, res) => {
     const thread = new Thread(req.body.subject, req.body.userId);
 
     // create first post
-    const post = new Post(thread.id, req.body.message, req.body.userId);
+    const post = new Post(thread.id, req.body.message || "", req.body.userId);
 
     // push post into thread
     thread.posts.push(post);
@@ -104,8 +70,18 @@ const getAllThreads = (req, res) => {
     });
 };
 
-const getOneThread = (req, res) => {
+const getOneThread = async (req, res) => {
   const id = req.query.id;
+
+  if (!req.query.id || req.body.id.length !== 36) {
+    return res.status(400).send("id is not valid"); // Invalid ID length
+  } else {
+    const idExists = await helper.doesThreadExistByThreadId(req.body.threadId);
+    if (!idExists) {
+      console.log("threadID doesn't exist");
+      return res.status(400).send("id is not valid"); // ID doesn't exist
+    }
+  }
 
   // read entire table
   threadController
@@ -130,27 +106,32 @@ const addPost = async (req, res) => {
       console.log("Invalid UserID length: \nLength: ", req.body.userId.length);
       return res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
-      const idExists = await doesUserExistByUserId(req.body.userId);
+      const idExists = await helper.doesUserExistByUserId(req.body.userId);
       if (!idExists) {
         console.log("userID doesn't exist");
         return res.status(400).send("UserId is not valid"); // ID doesn't exist
       }
     }
 
-    // Do more validation -> check if postID exists
-    if (!req.body.threadId || req.body.threadId.length != 36){
-      console.log("Invalid threadID length: \nLength: ", req.body.threadId.length)
-      res.status(400); // Invalid ID length
+    // Do more validation -> check if threadID exists
+    if (!req.body.threadId || req.body.threadId.length !== 36) {
+      return res.status(400).send("threadID is not valid"); // Invalid ID length
     } else {
-      const idExists = await doesThreadExistByThreadId(req.body.threadId)
-      if (!idExists){
-        console.log("threadID doesn't exist")
-        return res.status(400); // ID doesn't exist
+      const idExists = await helper.doesThreadExistByThreadId(
+        req.body.threadId
+      );
+      if (!idExists) {
+        console.log("threadID doesn't exist");
+        return res.status(400).send("threadID is not valid"); // ID doesn't exist
       }
-    } // TODO
+    }
 
     // Create post object
-    const post = new Post(req.body.threadId, req.body.message, req.body.userId);
+    const post = new Post(
+      req.body.threadId,
+      req.body.message || "",
+      req.body.userId
+    );
     console.log("post", post);
 
     // Add user and return the added user
