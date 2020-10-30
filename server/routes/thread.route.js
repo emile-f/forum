@@ -73,10 +73,10 @@ const getAllThreads = (req, res) => {
 const getOneThread = async (req, res) => {
   const id = req.query.id;
 
-  if (!req.query.id || req.body.id.length !== 36) {
+  if (!id || id.length !== 36) {
     return res.status(400).send("id is not valid"); // Invalid ID length
   } else {
-    const idExists = await helper.doesThreadExistByThreadId(req.body.threadId);
+    const idExists = await helper.doesThreadExistByThreadId(id);
     if (!idExists) {
       console.log("threadID doesn't exist");
       return res.status(400).send("id is not valid"); // ID doesn't exist

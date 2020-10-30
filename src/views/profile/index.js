@@ -13,7 +13,7 @@ const Profile = (props) => {
       props.location.state.threadId
     ) {
       console.log("this.props", props);
-      setId(props.location.state.id);
+      setId(props.location.state.threadId);
       console.log("id", id);
     } else {
       setRedirectToHome(true);

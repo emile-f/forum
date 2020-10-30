@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Thread = (props) => {
   console.log("props", props);
-  const threadHeader = "/thread/" + props.thread.subject;
+  const threadHeader = "/thread/" + props.thread.id;
   console.log("threadHeader", threadHeader);
 
   return (
