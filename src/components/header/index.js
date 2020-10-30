@@ -8,26 +8,21 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
   return (
-    <div className="header">
-      <ul>
-        <li>
+    <header id="scroll-header">
+      <nav>
+        <div>logo</div>
+        <div className="menu">
           <Link to="/">Home</Link>
-        </li>
-        <li>
           <Link to="/admin">Admin</Link>
-        </li>
-        <li>
           <Link to="/thread/thread_name_here">Dashboard</Link>
-        </li>
-        <li>
           <Link to="/thread/new_thread">New thread</Link>
-        </li>
-        <li>
           <Link to="/user/:profile_name">profile</Link>
-        </li>
-      </ul>
-      <hr />
-    </div>
+        </div>
+        <div className="login">
+          <Link to="/login">Sign-In/Sign-up</Link>
+        </div>
+      </nav>
+    </header>
   );
 };
 

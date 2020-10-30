@@ -63,7 +63,7 @@ const ThreadPage = (props) => {
   }, [id]);
 
   const addPostToList = (post) => {
-    setPosts((prevArray) => [...posts, post]);
+    setPosts(() => [...posts, post]);
   };
 
   if (redirectToHome === true) {

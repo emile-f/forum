@@ -8,7 +8,7 @@ function ThreadList(props) {
   const listItems = threads.map((thread) => (
     <Thread key={thread.id} thread={thread} />
   ));
-  return <div>{listItems}</div>;
+  return <React.Fragment>{listItems}</React.Fragment>;
 }
 
 export default ThreadList;

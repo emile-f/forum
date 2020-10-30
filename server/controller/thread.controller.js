@@ -23,13 +23,23 @@ const readThreads = () => {
         },
         {
           $project: {
-            "user._id": 0,
-            "user.active": 0,
-            "user.hashed_password": 0,
-            "user.created": 0,
-            "user.updated": 0,
-            "user.email": 0,
-            posts: 0,
+            count: {
+              $cond: {
+                if: { $isArray: "$posts" },
+                then: { $size: "$posts" },
+                else: "NA",
+              },
+            },
+            post: { $arrayElemAt: ["$posts", 0] },
+            user: {
+              name: 1,
+              id: 1,
+            },
+            subject: 1,
+            created: 1,
+            active: 1,
+            userId: 1,
+            id: 1,
             _id: 0,
           },
         },
@@ -165,7 +175,7 @@ const addThread = (thread) => {
   });
 };
 
-const addPost = (post) => {  
+const addPost = (post) => {
   return new Promise((resolve, reject) => {
     mongoClient
       .getDatabase()
@@ -194,25 +204,20 @@ const checkThreadID = (id) => {
     mongoClient
       .getDatabase()
       .connection.collection("thread")
-      .find(
-        id,
-        {
-          projection: { _id: 0, posts: 0 },
-        }
-      )
+      .find(id, {
+        projection: { _id: 0, posts: 0 },
+      })
       .toArray((err, docs) => {
         if (err) {
           console.error("error: readThread", err);
           reject(err);
         } else {
-          console.log(docs)
+          console.log(docs);
           resolve(docs);
         }
       });
   });
 };
-
-
 
 // Export all database functions
 module.exports = {
@@ -220,5 +225,5 @@ module.exports = {
   readThreads,
   readThread,
   addPost,
-  checkThreadID
+  checkThreadID,
 };

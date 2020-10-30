@@ -19,19 +19,23 @@ import Authenticate from "./views/authenticate";
 // Components
 import Header from "./components/header";
 
+
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Header />
-      <Switch>
-        <Route exact path="/" component={Feed} />
-        <AuthenticatedRoute path="/admin" component={Admin} />
-        <AuthenticatedRoute path="/thread/new_thread" component={NewThread} />
-        <Route path="/thread/:thread" component={Thread} />
-        <AuthenticatedRoute path="/user/:username" component={Profile} />
-        <Route path="/login" component={Authenticate} />
-        <Route path="*" component={NotFound} />
-      </Switch>
+      <div className="forum-body">
+        <Switch>
+          <Route exact path="/" component={Feed} />
+          <AuthenticatedRoute path="/admin" component={Admin} />
+          <AuthenticatedRoute path="/thread/new_thread" component={NewThread} />
+          <Route path="/thread/:thread" component={Thread} />
+          <AuthenticatedRoute path="/user/:username" component={Profile} />
+          <Route path="/login" component={Authenticate} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </div>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

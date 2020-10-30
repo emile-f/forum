@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { addPost } from "../../api/thread";
 import { currentUser } from "../../service/user.service";
 
+// TODO: message when user is not logged in
+
 const NewPost = (props) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState(undefined);
