@@ -1,49 +1,55 @@
 const Thread = require("../models/thread");
 const mongoClient = require("../config/mongoClient");
-const Post = require("../models/post");
 
-const readThreads = () => {
+const readThreads = (searchTerm) => {
   return new Promise((resolve, reject) => {
     // Merge 2 collection on userId
     // then remove all unnecessary data
+
+    const query = [
+      {
+        $lookup: {
+          from: "user",
+          localField: "userId",
+          foreignField: "id",
+          as: "user",
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+      {
+        $project: {
+          count: {
+            $cond: {
+              if: { $isArray: "$posts" },
+              then: { $size: "$posts" },
+              else: "NA",
+            },
+          },
+          post: { $arrayElemAt: ["$posts", 0] },
+          user: {
+            name: 1,
+            id: 1,
+          },
+          subject: 1,
+          created: 1,
+          active: 1,
+          userId: 1,
+          id: 1,
+          _id: 0,
+        },
+      },
+    ];
+
+    if (searchTerm) {
+      query.unshift({ $match: { $text: { $search: searchTerm } } });
+    }
+
     mongoClient
       .getDatabase()
       .connection.collection("thread")
-      .aggregate([
-        {
-          $lookup: {
-            from: "user",
-            localField: "userId",
-            foreignField: "id",
-            as: "user",
-          },
-        },
-        {
-          $unwind: "$user",
-        },
-        {
-          $project: {
-            count: {
-              $cond: {
-                if: { $isArray: "$posts" },
-                then: { $size: "$posts" },
-                else: "NA",
-              },
-            },
-            post: { $arrayElemAt: ["$posts", 0] },
-            user: {
-              name: 1,
-              id: 1,
-            },
-            subject: 1,
-            created: 1,
-            active: 1,
-            userId: 1,
-            id: 1,
-            _id: 0,
-          },
-        },
-      ])
+      .aggregate(query)
       .toArray((err, docs) => {
         if (err) {
           console.error("error: readThreads", err);
@@ -217,6 +223,10 @@ const checkThreadID = (id) => {
   });
 };
 
+const searchThread = (term) => {
+  return readThreads(term);
+};
+
 // Export all database functions
 module.exports = {
   addThread,
@@ -224,4 +234,5 @@ module.exports = {
   readThread,
   addPost,
   checkThreadID,
+  searchThread,
 };
