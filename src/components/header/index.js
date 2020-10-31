@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
+import { currentUser } from "../../service/user.service";
 // Change the page in router to the correct querystring
 // uses react-router linking
 // we can restyle this to be in a nav bar
@@ -18,11 +18,22 @@ const Header = (props) => {
         </div>
         <div className="filler">Search here</div>
         <div className="login">
-          <Link to="/login">Sign-In/Sign-up</Link>
+          {currentUser.id ? (
+            <div>hello {currentUser.name}</div>
+          ) : (
+            <Link
+              to={{
+                pathname: "/login",
+                state: { from: props.location },
+              }}
+            >
+              Sign-In/Sign-up
+            </Link>
+          )}
         </div>
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default withRouter(Header);
