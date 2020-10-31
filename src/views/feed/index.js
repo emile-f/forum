@@ -30,7 +30,7 @@ const Feed = (props) => {
 
   return (
     <div className="feed">
-      <PageHead title="Home" />
+      <PageHead className="title" title="Home" />
 
       <div className="container">
         {
@@ -40,7 +40,7 @@ const Feed = (props) => {
           ) : (
             <Loader
               type="Puff"
-              color="#00BFFF"
+              color="#4f5d75"
               height={100}
               width={100}
               className="loader"

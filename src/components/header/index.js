@@ -10,14 +10,13 @@ const Header = (props) => {
   return (
     <header className="active" id="scroll-header">
       <nav>
-        <div>logo</div>
         <div className="menu">
           <Link to="/">Home</Link>
-          <Link to="/admin">Admin</Link>
-          <Link to="/thread/thread_name_here">Dashboard</Link>
           <Link to="/thread/new_thread">New thread</Link>
-          <Link to="/user/:profile_name">profile</Link>
+          {/* <Link to="/user/:profile_name">profile</Link> */}
+          {/* <Link to="/admin">Admin</Link> */}
         </div>
+        <div className="filler">Search here</div>
         <div className="login">
           <Link to="/login">Sign-In/Sign-up</Link>
         </div>

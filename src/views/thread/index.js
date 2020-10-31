@@ -5,7 +5,7 @@ import { getThread } from "../../api/thread";
 import Loader from "react-loader-spinner";
 import PostList from "../../components/post-list";
 import NewPost from "../../components/new-post";
-
+import Thread from "../../components/thread";
 const ThreadPage = (props) => {
   // declare states
   const [id, setId] = useState(undefined);
@@ -45,7 +45,11 @@ const ThreadPage = (props) => {
               response.data.length &&
               response.data.length > 0
             ) {
-              setThread(response.data[0]);
+              const temp = response.data[0];
+              temp.post = response.data[0].posts[0];
+              temp.count = response.data[0].posts.length;
+
+              setThread(temp);
               setPosts(response.data[0].posts);
               setThreadLoaded(true);
             }
@@ -72,21 +76,12 @@ const ThreadPage = (props) => {
 
   return (
     <div className="thread">
-      <h1>thread page here: id: {id}</h1>
-
       {
         // Show loader until we load the user list
         threadLoaded ? (
           // posts here
           <div>
-            <ul>
-              <li>subject: {thread.subject}</li>
-              <li>created: {thread.created}</li>
-              <li>active: {thread.active}</li>
-              <li>user: {JSON.stringify(thread.user)}</li>
-              <li>id: {thread.id}</li>
-            </ul>
-            <br />
+            <Thread clickable={false} thread={thread} />
             <PostList posts={posts} />
             <br />
             <NewPost success={addPostToList} threadId={thread.id} />

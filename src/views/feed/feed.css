@@ -2,6 +2,17 @@
   position: relative;
 }
 
+.feed .page-head {
+  margin-left: 13px;
+}
+
+.feed .loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .feed .container {
   width: 70%;
 }
