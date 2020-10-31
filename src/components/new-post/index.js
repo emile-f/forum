@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { addPost } from "../../api/thread";
 import { currentUser } from "../../service/user.service";
+import { Link, withRouter } from "react-router-dom";
+
+import "./new-post.css";
 // TODO: message when user is not logged in
 
 const NewPost = (props) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState(undefined);
   const [threadId, setThreadId] = useState(undefined);
+  const [needToLogin, setNeedToLogin] = useState(false);
 
   useEffect(() => {
     setThreadId(props.threadId);
+    if (!currentUser.id) {
+      setNeedToLogin(true);
+    }
   }, []);
 
   const handleClick = () => {
@@ -45,26 +52,36 @@ const NewPost = (props) => {
       });
   };
 
-  return (
-    <div className="thread">
-      <h1>New Post</h1>
+  if (needToLogin) {
+    return (
+      <div id={props.id} className="new-post">
+        Please sign-in/sign-up to add a post.
+        <Link
+          to={{
+            pathname: "/login",
+            state: { from: props.location },
+          }}
+        >
+          <p className="button">Go to sign-in/sign-up</p>
+        </Link>
+      </div>
+    );
+  } else {
+    return (
+      <div id={props.id} className="new-post">
+        <h1>Add post:</h1>
 
-      <textarea
-        id="message"
-        alt="message"
-        name="message"
-        onChange={(event) => setMessage(event.target.value)}
-      ></textarea>
-
-      <br />
-
-      <button onClick={handleClick}>Submit</button>
-
-      <br />
-
-      <div>{error ? error : ""}</div>
-    </div>
-  );
+        <textarea
+          id="message"
+          alt="message"
+          name="message"
+          onChange={(event) => setMessage(event.target.value)}
+        ></textarea>
+        <button onClick={handleClick}>Submit</button>
+        <div>{error ? error : ""}</div>
+      </div>
+    );
+  }
 };
 
-export default NewPost;
+export default withRouter(NewPost);
