@@ -1,0 +1,51 @@
+.thread {
+  text-decoration: none;
+  color: black;
+  flex-direction: column;
+}
+
+.thread .container {
+  width: calc(100% - 66px);
+  position: relative;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  padding: 25px;
+  margin: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.thread .container .vertical-centering {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.thread .container .icon > div {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  border-radius: 35px;
+}
+
+.thread .container .content {
+  width: 80%;
+  margin-left: 25px;
+}
+
+.thread .container .content .subject {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.thread .container .content .date {
+  font-size: 12px;
+  margin-top: -20px;
+}
+
+.thread .container .comments > p {
+  text-align: center;
+}
