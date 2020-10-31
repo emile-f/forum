@@ -1,34 +1,39 @@
 import React from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
+import { currentUser } from "../../service/user.service";
 // Change the page in router to the correct querystring
 // uses react-router linking
 // we can restyle this to be in a nav bar
 
 const Header = (props) => {
   return (
-    <div className="header">
-      <ul>
-        <li>
+    <header className="active" id="scroll-header">
+      <nav>
+        <div className="menu">
           <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/admin">Admin</Link>
-        </li>
-        <li>
-          <Link to="/thread/thread_name_here">Dashboard</Link>
-        </li>
-        <li>
           <Link to="/thread/new_thread">New thread</Link>
-        </li>
-        <li>
-          <Link to="/user/:profile_name">profile</Link>
-        </li>
-      </ul>
-      <hr />
-    </div>
+          {/* <Link to="/user/:profile_name">profile</Link> */}
+          {/* <Link to="/admin">Admin</Link> */}
+        </div>
+        <div className="filler">Search here</div>
+        <div className="login">
+          {currentUser.id ? (
+            <div>hello {currentUser.name}</div>
+          ) : (
+            <Link
+              to={{
+                pathname: "/login",
+                state: { from: props.location },
+              }}
+            >
+              Sign-In/Sign-up
+            </Link>
+          )}
+        </div>
+      </nav>
+    </header>
   );
 };
 
-export default Header;
+export default withRouter(Header);
