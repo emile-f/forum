@@ -1,0 +1,34 @@
+.post-list {
+  width: 75%;
+}
+
+.thread .content {
+  position: relative;
+}
+
+.thread aside {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 22%;
+}
+
+.thread aside a {
+  text-decoration: none;
+  color: black;
+}
+
+.thread aside .create-new-post {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.thread aside .create-new-post:hover{
+  cursor: pointer;
+}

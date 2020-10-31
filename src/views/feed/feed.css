@@ -14,7 +14,11 @@
 }
 
 .feed .container {
+<<<<<<< Updated upstream
   width: 70%;
+=======
+  width: 75%;
+>>>>>>> Stashed changes
 }
 
 .feed aside {

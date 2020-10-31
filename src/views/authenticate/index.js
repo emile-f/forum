@@ -9,6 +9,7 @@ import SignUp from "../../components/sign-up";
 const Authenticate = (props) => {
   const [login, setLogin] = useState(true);
   const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+  const { from } = props.location.state || { from: { pathname: "/" } };
 
   const loginSuccess = (data) => {
     console.log("Parent function called", data);
@@ -16,19 +17,20 @@ const Authenticate = (props) => {
     setRedirectToReferrer(true);
   };
 
-  const { from } = props.location.state || { from: { pathname: "/" } };
+  const changeLoginMode = () => {
+    setLogin(!login);
+  };
 
   if (redirectToReferrer === true) {
     return <Redirect to={from} />;
   }
 
   return (
-    <div className="container">
-      <button onClick={() => setLogin(!login)}>Change sign-in/sign-up</button>
+    <div className="auth-container">
       {login ? (
-        <SignIn success={loginSuccess} />
+        <SignIn changeMode={changeLoginMode} success={loginSuccess} />
       ) : (
-        <SignUp success={loginSuccess} />
+        <SignUp changeMode={changeLoginMode} success={loginSuccess} />
       )}
     </div>
   );

@@ -70,6 +70,14 @@ const ThreadPage = (props) => {
     setPosts(() => [...posts, post]);
   };
 
+<<<<<<< Updated upstream
+=======
+  const scrollToNewPost = () => {
+    const newPost = document.getElementById("new-post");
+    newPost.scrollIntoView(true);
+  };
+
+>>>>>>> Stashed changes
   if (redirectToHome === true) {
     return <Redirect to="/" />;
   }
@@ -82,9 +90,28 @@ const ThreadPage = (props) => {
           // posts here
           <div>
             <Thread clickable={false} thread={thread} />
+<<<<<<< Updated upstream
             <PostList posts={posts} />
             <br />
             <NewPost success={addPostToList} threadId={thread.id} />
+=======
+
+            <div className="content">
+              <PostList posts={posts} />
+              <aside>
+                <div onClick={scrollToNewPost}>
+                  <div className="create-new-post">Create new post</div>
+                </div>
+              </aside>
+            </div>
+
+            <br />
+            <NewPost
+              id="new-post"
+              success={addPostToList}
+              threadId={thread.id}
+            />
+>>>>>>> Stashed changes
           </div>
         ) : (
           <Loader
