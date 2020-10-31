@@ -52,4 +52,8 @@ const doesThreadExistByThreadId = (id) => {
   });
 };
 
-export { doesUserExist, doesUserExistByUserId, doesThreadExistByThreadId };
+module.exports = {
+  doesUserExist,
+  doesUserExistByUserId,
+  doesThreadExistByThreadId,
+};

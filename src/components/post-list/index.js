@@ -8,7 +8,7 @@ function PostList(props) {
   const listItems = posts.map((post, index) => (
     <Post key={index} post={post} />
   ));
-  return <div className="post-list">{listItems}</div>;
+  return <div>{listItems}</div>;
 }
 
 export default PostList;

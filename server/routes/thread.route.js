@@ -8,7 +8,10 @@ const helper = require("./helper");
 const addThread = async (req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
-    if (!req.body.userId || req.body.userId.length !== 36) {
+    if (
+      !req.body.userId ||
+      (req.body.userId && req.body.userId.length !== 36)
+    ) {
       res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
@@ -73,10 +76,10 @@ const getAllThreads = (req, res) => {
 const getOneThread = async (req, res) => {
   const id = req.query.id;
 
-  if (!req.query.id || req.body.id.length !== 36) {
+  if (!id || id.length !== 36) {
     return res.status(400).send("id is not valid"); // Invalid ID length
   } else {
-    const idExists = await helper.doesThreadExistByThreadId(req.body.threadId);
+    const idExists = await helper.doesThreadExistByThreadId(id);
     if (!idExists) {
       console.log("threadID doesn't exist");
       return res.status(400).send("id is not valid"); // ID doesn't exist
@@ -102,8 +105,7 @@ const getOneThread = async (req, res) => {
 const addPost = async (req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
-    if (!req.body.userId || req.body.userId.length !== 36) {
-      console.log("Invalid UserID length: \nLength: ", req.body.userId.length);
+    if (!req.body.userId || (req.body.userId && req.body.userId.length !== 36)) {
       return res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
@@ -114,7 +116,7 @@ const addPost = async (req, res) => {
     }
 
     // Do more validation -> check if threadID exists
-    if (!req.body.threadId || req.body.threadId.length !== 36) {
+    if (!req.body.threadId || (req.body.userId && req.body.userId.length !== 36)) {
       return res.status(400).send("threadID is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesThreadExistByThreadId(

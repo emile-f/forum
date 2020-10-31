@@ -3,6 +3,8 @@ import "./feed.css";
 import { getAllThreads } from "../../api/thread";
 import ThreadList from "../../components/thread-list";
 import Loader from "react-loader-spinner";
+import PageHead from "../../components/page-head";
+import { Link } from "react-router-dom";
 
 const Feed = (props) => {
   const [threads, setThreads] = useState([]);
@@ -28,7 +30,8 @@ const Feed = (props) => {
 
   return (
     <div className="feed">
-      <h1>feed page here</h1>
+      <PageHead className="title" title="Home" />
+
       <div className="container">
         {
           // Show loader until we load the user list
@@ -37,7 +40,7 @@ const Feed = (props) => {
           ) : (
             <Loader
               type="Puff"
-              color="#00BFFF"
+              color="#4f5d75"
               height={100}
               width={100}
               className="loader"
@@ -45,6 +48,12 @@ const Feed = (props) => {
           )
         }
       </div>
+
+      <aside>
+        <Link to="/thread/new_thread">
+          <div className="create-new-thread">Create new thread</div>
+        </Link>
+      </aside>
     </div>
   );
 };
