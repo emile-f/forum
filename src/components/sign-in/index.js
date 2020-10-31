@@ -11,6 +11,10 @@ const Login = (props) => {
   const handlePassword = (pass) => setPassword(sha256(pass).toString());
 
   const handleClick = () => {
+    if (username === "" || password === "") {
+      setError("Please fill in all fields");
+      return;
+    }
     var payload = {
       email: username,
       password: password,
@@ -31,31 +35,38 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <div onClick={props.changeMode} className="top-right-corner">Sign-up</div>
       <h2>Sign-in</h2>
 
-      <input
-        id="email"
-        alt="email"
-        autoFocus
-        name="username"
-        placeholder="Enter your Email"
-        type="text"
-        onChange={(event) => setUsername(event.target.value)}
-      ></input>
-      <br />
-      <input
-        id="password"
-        alt="password"
-        name="password"
-        placeholder="Enter your Password"
-        type="password"
-        onChange={(event) => handlePassword(event.target.value)}
-      ></input>
-      <br />
-      <button onClick={handleClick}>Submit</button>
-      <br />
-      <div>{error ? error : ""}</div>
+      <div>
+        <label for="email">Email: </label>
+        <input
+          id="email"
+          alt="email"
+          autoFocus
+          name="username"
+          placeholder="Enter your Email"
+          type="text"
+          onChange={(event) => setUsername(event.target.value)}
+        ></input>
+      </div>
+
+      <div>
+        <label for="password">Password: </label>
+        <input
+          id="password"
+          alt="password"
+          name="password"
+          placeholder="Enter your Password"
+          type="password"
+          onChange={(event) => handlePassword(event.target.value)}
+        ></input>
+      </div>
+
+      <button onClick={handleClick}>Sign-in</button>
+
+      <div className="error">{error ? error : ""}</div>
     </div>
   );
 };

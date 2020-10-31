@@ -10,6 +10,11 @@ const Register = (props) => {
   console.log("this.props in register", props);
 
   const handleClick = () => {
+    if (username === "" || password === "" || email === "") {
+      setError("Please fill in all fields");
+      return;
+    }
+
     // TODO: validate values
     var payload = {
       name: username,
@@ -36,47 +41,52 @@ const Register = (props) => {
   const handlePassword = (pass) => setPassword(sha256(pass).toString());
 
   return (
-    <div>
+    <div className="container">
+      <div onClick={props.changeMode} className="top-right-corner">
+        Sign-in
+      </div>
       <h2>Sign-up</h2>
 
-      <input
-        id="name"
-        alt="name"
-        autoFocus
-        name="name"
-        placeholder="Enter your account Name"
-        type="text"
-        onChange={(event) => setUsername(event.target.value)}
-      ></input>
+      <div>
+        <label for="name">Username: </label>
+        <input
+          id="name"
+          alt="name"
+          autoFocus
+          name="name"
+          placeholder="Enter your username"
+          type="text"
+          onChange={(event) => setUsername(event.target.value)}
+        ></input>
+      </div>
 
-      <br />
+      <div>
+        <label for="email">Email: </label>
+        <input
+          id="email"
+          alt="email"
+          name="username"
+          placeholder="Enter your Email"
+          type="text"
+          onChange={(event) => setEmail(event.target.value)}
+        ></input>
+      </div>
 
-      <input
-        id="email"
-        alt="email"
-        name="username"
-        placeholder="Enter your Email"
-        type="text"
-        onChange={(event) => setEmail(event.target.value)}
-      ></input>
+      <div>
+        <label for="password">Password: </label>
+        <input
+          id="password"
+          alt="password"
+          name="password"
+          placeholder="Enter your Password"
+          type="password"
+          onChange={(event) => handlePassword(event.target.value)}
+        ></input>
+      </div>
 
-      <br />
-      <input
-        id="password"
-        alt="password"
-        name="password"
-        placeholder="Enter your Password"
-        type="password"
-        onChange={(event) => handlePassword(event.target.value)}
-      ></input>
+      <button onClick={handleClick}>Sign-up</button>
 
-      <br />
-
-      <button onClick={handleClick}>Submit</button>
-
-      <br />
-
-      <div>{error ? error : ""}</div>
+      <div className="error">{error ? error : ""}</div>
     </div>
   );
 };
