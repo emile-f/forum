@@ -5,7 +5,7 @@ environment["development"] = {
 };
 
 environment["production"] = {
-  api: "http://localhost:3000",
+  api: "https://webdev-forum-backend.herokuapp.com",
 };
 
 export default environment;
