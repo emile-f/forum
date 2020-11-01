@@ -21,8 +21,17 @@ const addThread = async (req, res) => {
       }
     }
 
+    let tags = [];
+    if (req.body.tags) {
+      try {
+        tags = JSON.parse(req.body.tags);
+      } catch (error) {
+        console.error("Failed to parse tags", req.body.tags);
+      }
+    }
+
     // Create thread object
-    const thread = new Thread(req.body.subject, req.body.userId);
+    const thread = new Thread(req.body.subject, req.body.userId, tags);
 
     // create first post
     const post = new Post(thread.id, req.body.message || "", req.body.userId);

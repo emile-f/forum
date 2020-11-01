@@ -37,6 +37,7 @@ const readThreads = (searchTerm) => {
           active: 1,
           userId: 1,
           id: 1,
+          tags: 1,
           _id: 0,
         },
       },
