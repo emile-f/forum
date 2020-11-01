@@ -33,13 +33,15 @@ const mongoDb = (uri, dbName) => {
 // Initialize the database
 // This will be called before we start listening to express server
 const initConnection = () => {
-  return new Promise(async (resolve) => {
+  return new Promise((resolve) => {
     // Get uri from the config
     const uri = config.mongo.uri;
     // connect to our forum DB
-    database = await mongoDb(uri, "forum");
-    // Resolve the connection
-    resolve();
+    mongoDb(uri, "forum").then((db) => {
+      database = db;
+      // Resolve the connection
+      resolve();
+    });
   });
 };
 

@@ -3,7 +3,6 @@ const express = require("express");
 const userController = require("../controller/user.controller");
 const threadController = require("../controller/thread.controller");
 const User = require("../models/user");
-const { json } = require("body-parser");
 const router = express.Router();
 
 // Get all users
