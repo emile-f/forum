@@ -11,8 +11,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .forum-body {
@@ -22,6 +21,10 @@ code {
   position: relative;
 }
 
+footer {
+  position: relative;
+  margin-top: 25px;
+}
 .copyright {
   position: absolute;
   bottom: 0;
