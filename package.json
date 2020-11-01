@@ -40,8 +40,6 @@
     "url": "git+https://github.com/emile-f/forum.git"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "start-react": "set PORT=8080 && react-scripts start",
     "backend": "nodemon server/app.js localhost 3000 --ignore src/*",
