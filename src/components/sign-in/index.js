@@ -40,7 +40,7 @@ const Login = (props) => {
       <h2>Sign-in</h2>
 
       <div>
-        <label for="email">Email: </label>
+        <label htmlFor="email">Email: </label>
         <input
           id="email"
           alt="email"
@@ -53,7 +53,7 @@ const Login = (props) => {
       </div>
 
       <div>
-        <label for="password">Password: </label>
+        <label htmlFor="password">Password: </label>
         <input
           id="password"
           alt="password"

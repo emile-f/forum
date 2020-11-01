@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./feed.css";
-import { getAllThreads } from "../../api/thread";
+import { getAllThreads, searchAllThreads } from "../../api/thread";
 import ThreadList from "../../components/thread-list";
 import Loader from "react-loader-spinner";
 import PageHead from "../../components/page-head";
 import { Link } from "react-router-dom";
+import SearchBar from "../../components/search-bar";
 
 const Feed = (props) => {
   const [threads, setThreads] = useState([]);
   const [dataAvailable, setDataAvailable] = useState(false);
+  const [searchDone, setSearchDone] = useState(false);
+  const [searchThreads, setSearchThreads] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const triggerSearch = () => {
+    if (searchTerm !== "") {
+      console.log("Search trigger -> ", searchTerm);
+      onSearch(searchTerm);
+    }
+  };
 
   useEffect(() => {
     getAllThreads()
@@ -28,6 +39,33 @@ const Feed = (props) => {
       });
   }, []);
 
+  const onSearch = (term) => {
+    setDataAvailable(false);
+    console.log("Search", term);
+    searchAllThreads(term)
+      .then((response) => {
+        // On positive response
+        console.log("data", response.data);
+
+        // Insert users
+        setSearchThreads(response.data);
+
+        // Let UI know that the users are available
+        setDataAvailable(true);
+        setSearchDone(true);
+      })
+      .catch((err) => {
+        // TODO: Show error message
+        console.error("Failed to get all threads", err);
+      });
+  };
+
+  const resetSearch = () => {
+    setSearchTerm("");
+    setSearchThreads([]);
+    setSearchDone(false);
+  };
+
   return (
     <div className="feed">
       <PageHead className="title" title="Home" />
@@ -36,7 +74,9 @@ const Feed = (props) => {
         {
           // Show loader until we load the user list
           dataAvailable ? (
-            <ThreadList threads={threads} />
+            <ThreadList
+              threads={searchThreads.length > 0 ? searchThreads : threads}
+            />
           ) : (
             <Loader
               type="Puff"
@@ -53,6 +93,18 @@ const Feed = (props) => {
         <Link to="/thread/new_thread">
           <div className="create-new-thread">Create new thread</div>
         </Link>
+        <SearchBar
+          value={searchTerm}
+          search={triggerSearch}
+          onSearch={setSearchTerm}
+        />
+        {searchDone ? (
+          <div onClick={resetSearch} className="search-info">
+            {searchThreads.length > 0 ? "Reset search" : "No threads found"}
+          </div>
+        ) : (
+          ""
+        )}
       </aside>
     </div>
   );

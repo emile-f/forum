@@ -29,7 +29,9 @@
   color: black;
 }
 
-.feed aside .create-new-thread {
+.feed aside .create-new-thread,
+.feed aside .search-bar,
+.feed aside .search-info {
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
@@ -38,4 +40,14 @@
   height: 50px;
   text-align: center;
   line-height: 50px;
+}
+.feed aside .search-bar {
+  height: 110px;
+}
+.feed aside .search-info{
+  cursor: pointer;
+}
+.feed aside .search-bar,
+.feed aside .search-info {
+  margin-top: 13px;
 }

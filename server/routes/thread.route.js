@@ -12,7 +12,7 @@ const addThread = async (req, res) => {
       !req.body.userId ||
       (req.body.userId && req.body.userId.length !== 36)
     ) {
-      res.status(400).send("UserId is not valid"); // Invalid ID length
+      return res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
       if (!idExists) {
@@ -105,7 +105,10 @@ const getOneThread = async (req, res) => {
 const addPost = async (req, res) => {
   if (req && req.body) {
     // Do more validation -> check if userId exists
-    if (!req.body.userId || (req.body.userId && req.body.userId.length !== 36)) {
+    if (
+      !req.body.userId ||
+      (req.body.userId && req.body.userId.length !== 36)
+    ) {
       return res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
@@ -116,7 +119,10 @@ const addPost = async (req, res) => {
     }
 
     // Do more validation -> check if threadID exists
-    if (!req.body.threadId || (req.body.userId && req.body.userId.length !== 36)) {
+    if (
+      !req.body.threadId ||
+      (req.body.userId && req.body.userId.length !== 36)
+    ) {
       return res.status(400).send("threadID is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesThreadExistByThreadId(
@@ -160,6 +166,29 @@ const addPost = async (req, res) => {
   }
 };
 
+const searchInThreads = async (req, res) => {
+  const searchTerm = req.query.searchTerm;
+
+  if (!searchTerm) {
+    return res.status(400).send("id is not valid"); // Invalid ID length
+  }
+
+  // read entire table
+  threadController
+    .searchThread(searchTerm)
+    .then((thread) => {
+      res.json(thread);
+    })
+    .catch((err) => {
+      // Database call failed return 500 error
+      res.status(500); // 500 Internal Server Error
+      res.json({
+        "status-code": 500,
+        message: err || "failed request",
+      });
+    });
+};
+
 // Routes
 router.post("/add", addThread);
 
@@ -170,6 +199,8 @@ router.get("/all", getAllThreads);
 
 // example: localhost:3000/thread/one?id=1b29376f-71d3-4c54-875c-cc1898a55819
 router.get("/one", getOneThread);
+
+router.get("/search", searchInThreads);
 
 // Export user router
 module.exports = router;

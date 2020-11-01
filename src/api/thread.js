@@ -6,6 +6,12 @@ export const getAllThreads = () => {
   return axios.get(env[process.env.NODE_ENV].api + "/thread/all");
 };
 
+export const searchAllThreads = (searchTerm) => {
+  return axios.get(
+    env[process.env.NODE_ENV].api + "/thread/search?searchTerm=" + searchTerm
+  );
+};
+
 export const getThread = (id) => {
   return axios.get(env[process.env.NODE_ENV].api + "/thread/one?id=" + id);
 };
