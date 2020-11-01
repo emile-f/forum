@@ -20,7 +20,7 @@ import Header from "./components/header";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/forum/">
       <Header />
       <div className="forum-body">
         <Switch>
