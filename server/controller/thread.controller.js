@@ -46,11 +46,12 @@ const readThreads = (searchTerm) => {
     if (searchTerm) {
       query.unshift({ $match: { $text: { $search: searchTerm } } });
     }
-
+    // Sort in reverse order
     mongoClient
       .getDatabase()
       .connection.collection("thread")
       .aggregate(query)
+      .sort({ created: -1 })
       .toArray((err, docs) => {
         if (err) {
           console.error("error: readThreads", err);
@@ -224,6 +225,55 @@ const checkThreadID = (id) => {
   });
 };
 
+const getAmountOfThreads = () => {
+  return new Promise((resolve, reject) => {
+    mongoClient
+      .getDatabase()
+      .connection.collection("thread")
+      .countDocuments({})
+      .then((count) => {
+        resolve({ threadCount: count });
+      });
+  });
+};
+
+const getAmountOfPosts = () => {
+  return new Promise((resolve, reject) => {
+    mongoClient
+      .getDatabase()
+      .connection.collection("thread")
+      .aggregate([
+        {
+          $project: {
+            _id: 0,
+            count: { $size: "$posts" },
+          },
+        },
+        {
+          $group: {
+            _id: "$_id",
+            postCount: { $sum: "$count" },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+          },
+        },
+      ])
+      .toArray((err, docs) => {
+        if (err) {
+          console.error("error: getAmountOfPosts", err);
+          reject("Failed to get posts count from database");
+        } else {
+          if (docs && docs.length && docs.length > 0) {
+            resolve(docs[0]);
+          }
+        }
+      });
+  });
+};
+
 const searchThread = (term) => {
   return readThreads(term);
 };
@@ -236,4 +286,6 @@ module.exports = {
   addPost,
   checkThreadID,
   searchThread,
+  getAmountOfPosts,
+  getAmountOfThreads,
 };

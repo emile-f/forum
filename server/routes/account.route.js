@@ -1,27 +1,41 @@
 const helper = require("./helper");
 const express = require("express");
 const userController = require("../controller/user.controller");
+const threadController = require("../controller/thread.controller");
 const User = require("../models/user");
+const { json } = require("body-parser");
 const router = express.Router();
 
 // Get all users
 // Promise based functions readUsers is our database function
 // Api: GET /accounts/all
-const getAllUsers = (req, res) => {
+const getStats = async (req, res) => {
   // read entire table
-  userController
-    .readUsers()
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((err) => {
-      // Database call failed return 500 error
-      res.status(500); // 500 Internal Server Error
-      res.json({
-        "status-code": 500,
-        message: err || "failed request",
-      });
+  const promises = [
+    userController.getAmountOfUsers(),
+    threadController.getAmountOfThreads(),
+    threadController.getAmountOfPosts(),
+  ];
+  try {
+    const result = await Promise.all(promises);
+    let json = {};
+    // Flatten array to single object
+    if (result && result.length) {
+      for (let item of result) {
+        const k = Object.keys(item);
+        for (let i = 0; i < k.length; i++) {
+          json[k[i]] = item[k[i]];
+        }
+      }
+    }
+    res.json(json);
+  } catch (error) {
+    res.status(500); // 500 Internal Server Error
+    res.json({
+      "status-code": 500,
+      message: "Failed to get stats",
     });
+  }
 };
 
 // Api: POST /accounts/signup
@@ -107,7 +121,7 @@ const signIn = (req, res) => {
 };
 
 // Routes
-router.get("/all", getAllUsers);
+router.get("/stats", getStats);
 router.post("/signup", signUp);
 router.post("/signin", signIn);
 

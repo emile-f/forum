@@ -26,6 +26,18 @@ const readUsers = () => {
   });
 };
 
+const getAmountOfUsers = () => {
+  return new Promise((resolve, reject) => {
+    mongoClient
+      .getDatabase()
+      .connection.collection("user")
+      .countDocuments({})
+      .then((count) => {
+        resolve({ userCount: count });
+      });
+  });
+};
+
 // only read active users
 // don't return password field
 const readUser = (doc) => {
@@ -75,7 +87,6 @@ const addUser = (doc) => {
   });
 };
 
-
 /*
   location: structure to recognize the data to update on for example id
   updateValue: json structure to update
@@ -119,6 +130,7 @@ module.exports = {
   updateUser,
   readUser,
   deleteUser,
+  getAmountOfUsers,
 };
 
 // Example database function for user table

@@ -23,6 +23,21 @@
   height: 150px;
 }
 
+.new-post .location {
+  display: flex;
+  margin-top: 13px;
+  line-height: 25px;
+}
+
+.new-post .location input {
+  height: 21px;
+  margin-left: 5px;
+}
+
+.new-post .location input:checked {
+  background-color: #4f5d75;
+}
+
 .new-post button,
 .new-post .button {
   width: 200px;

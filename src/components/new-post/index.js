@@ -9,6 +9,7 @@ const NewPost = (props) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState(undefined);
   const [threadId, setThreadId] = useState(undefined);
+  const [location, setLocation] = useState(undefined);
   const [needToLogin, setNeedToLogin] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const NewPost = (props) => {
     var payload = {
       threadId: threadId,
       message: message,
+      location: JSON.stringify(location),
     };
 
     addPost(payload)
@@ -36,12 +38,18 @@ const NewPost = (props) => {
             active: data.active,
             content: data.content,
             created: data.created,
-            user: {
-              name: currentUser.name,
-              id: currentUser.id,
-            },
+            user: [
+              {
+                name: currentUser.name,
+                id: currentUser.id,
+              },
+            ],
           };
           props.success(post);
+
+          // clear data
+          setMessage("");
+          setLocation(undefined);
         } else if (response.status === 202) {
           setError(response.data);
         }
@@ -49,6 +57,19 @@ const NewPost = (props) => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const askLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLocation({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+      });
+    } else {
+      setError("Geolocation is not supported by this browser.");
+    }
   };
 
   if (needToLogin) {
@@ -76,6 +97,10 @@ const NewPost = (props) => {
           name="message"
           onChange={(event) => setMessage(event.target.value)}
         ></textarea>
+        <div className="location">
+          <label htmlFor="location">Share location: </label>
+          <input onChange={askLocation} type="checkbox"></input>
+        </div>
         <button onClick={handleClick}>Submit</button>
         <div>{error ? error : ""}</div>
       </div>
