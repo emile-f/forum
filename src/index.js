@@ -8,7 +8,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import AuthenticatedRoute from "./components/authenticated-route";
 
 // Pages
-import Admin from "./views/admin";
+import Stats from "./views/stats";
 import Feed from "./views/feed";
 import Thread from "./views/thread";
 import NotFound from "./views/not-found";
@@ -19,8 +19,6 @@ import Authenticate from "./views/authenticate";
 // Components
 import Header from "./components/header";
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -28,7 +26,7 @@ ReactDOM.render(
       <div className="forum-body">
         <Switch>
           <Route exact path="/" component={Feed} />
-          <AuthenticatedRoute path="/admin" component={Admin} />
+          <Route path="/stats" component={Stats} />
           <AuthenticatedRoute path="/thread/new_thread" component={NewThread} />
           <Route path="/thread/:thread" component={Thread} />
           <AuthenticatedRoute path="/user/:username" component={Profile} />

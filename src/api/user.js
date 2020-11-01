@@ -5,8 +5,8 @@ import env from "../config/env";
 // mostly used for debugging and admin purposes
 // Get env api -> production: deployed database
 // development -> localhost database
-export const getAllUsers = () => {
-  return axios.get(env[process.env.NODE_ENV].api + "/accounts/all");
+export const getUserStats = () => {
+  return axios.get(env[process.env.NODE_ENV].api + "/accounts/stats");
 };
 
 export const signInUser = (payload) => {
