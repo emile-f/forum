@@ -48,7 +48,7 @@ const Register = (props) => {
       <h2>Sign-up</h2>
 
       <div>
-        <label for="name">Username: </label>
+        <label htmlFor="name">Username: </label>
         <input
           id="name"
           alt="name"
@@ -61,7 +61,7 @@ const Register = (props) => {
       </div>
 
       <div>
-        <label for="email">Email: </label>
+        <label htmlFor="email">Email: </label>
         <input
           id="email"
           alt="email"
@@ -73,7 +73,7 @@ const Register = (props) => {
       </div>
 
       <div>
-        <label for="password">Password: </label>
+        <label htmlFor="password">Password: </label>
         <input
           id="password"
           alt="password"
