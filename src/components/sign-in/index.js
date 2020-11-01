@@ -6,7 +6,6 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(undefined);
-  console.log("this.props in login", props);
 
   const handlePassword = (pass) => setPassword(sha256(pass).toString());
 
@@ -23,14 +22,13 @@ const Login = (props) => {
     signInUser(payload)
       .then((response) => {
         if (response.status === 200) {
-          console.log("Login successful");
           props.success(response.data);
         } else if (response.status === 202) {
           setError(response.data);
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

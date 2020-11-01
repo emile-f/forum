@@ -19,7 +19,6 @@ export const getRandomBackgroundColor = (str) => {
   }
 
   var l = (saturation * saturation) % 100;
-  console.log("test", saturation, l);
 
   var h = hash % 360;
 

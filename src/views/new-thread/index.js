@@ -27,9 +27,7 @@ const NewThread = (props) => {
     addThread(payload)
       .then((response) => {
         if (response.status === 200) {
-          console.log("Added thread success");
           // link to thread page
-          console.log("thread", response.data);
           setThreadId(response.data.id);
           setRedirect(true);
         } else if (response.status === 202) {
@@ -37,7 +35,7 @@ const NewThread = (props) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

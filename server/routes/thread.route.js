@@ -17,7 +17,6 @@ const addThread = async (req, res) => {
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
       if (!idExists) {
-        console.log("userID doesn't exist");
         return res.status(400).send("UserId is not valid"); // ID doesn't exist
       }
     }
@@ -39,8 +38,6 @@ const addThread = async (req, res) => {
 
     // push post into thread
     thread.posts.push(post);
-
-    console.log("thread", thread);
 
     // Add user and return the added user
     threadController
@@ -91,7 +88,6 @@ const getOneThread = async (req, res) => {
   } else {
     const idExists = await helper.doesThreadExistByThreadId(id);
     if (!idExists) {
-      console.log("threadID doesn't exist");
       return res.status(400).send("id is not valid"); // ID doesn't exist
     }
   }
@@ -123,7 +119,6 @@ const addPost = async (req, res) => {
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
       if (!idExists) {
-        console.log("userID doesn't exist");
         return res.status(400).send("UserId is not valid"); // ID doesn't exist
       }
     }
@@ -139,7 +134,6 @@ const addPost = async (req, res) => {
         req.body.threadId
       );
       if (!idExists) {
-        console.log("threadID doesn't exist");
         return res.status(400).send("threadID is not valid"); // ID doesn't exist
       }
     }
@@ -162,7 +156,6 @@ const addPost = async (req, res) => {
       req.body.message || "",
       req.body.userId
     );
-    console.log("post", post);
 
     // Add user and return the added user
     threadController

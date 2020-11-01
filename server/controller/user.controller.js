@@ -123,9 +123,6 @@ const deleteUser = (location) => {
   });
 };
 
-// Real delete for development only
-const deleteDocument = () => {};
-
 // Export all database functions
 module.exports = {
   readUsers,
@@ -135,44 +132,3 @@ module.exports = {
   deleteUser,
   getAmountOfUsers,
 };
-
-// Example database function for user table
-/*
-const test = async () => {
-
-  // init connection
-  await mongoClient.initConnection();
-
-  // read entire table
-  const before = await userController.readUsers();
-  console.log("Users before insert", JSON.stringify(before));
-
-  // insert new in table
-  const insert = await userController.addUser({ test: "emile3" });
-  console.log("User after insert", JSON.stringify(insert));
-
-  // read entire table
-  const after = await userController.readUsers();
-  console.log("Users after insert", JSON.stringify(after));
-
-  // update new user
-  const update = await userController.updateUser(
-    { test: "emile3" },
-    { $set: { test2: 2 } }
-  );
-  console.log("after update", JSON.stringify(update));
-
-  // read entire table
-  const read = await userController.readUsers();
-  console.log("Users after update", JSON.stringify(read));
-
-  // get single user
-  const single = await userController.readUsers({ test: "emile3" });
-  console.log("User after", JSON.stringify(single));
-
-  // delete single user
-  const deleteUser = await userController.deleteUser({ test: "emile3" });
-  console.log("User delete after", JSON.stringify(deleteUser));
-
-};
-*/

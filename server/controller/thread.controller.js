@@ -218,7 +218,6 @@ const checkThreadID = (id) => {
           console.error("error: readThread", err);
           reject(err);
         } else {
-          console.log(docs);
           resolve(docs);
         }
       });

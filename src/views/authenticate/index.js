@@ -12,7 +12,6 @@ const Authenticate = (props) => {
   const { from } = props.location.state || { from: { pathname: "/" } };
 
   const loginSuccess = (data) => {
-    console.log("Parent function called", data);
     addUser(data);
     setRedirectToReferrer(true);
   };

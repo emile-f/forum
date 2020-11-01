@@ -32,15 +32,10 @@ const ThreadPage = (props) => {
   useEffect(initialSetup, []);
 
   useEffect(() => {
-    console.log("Id updated", id);
-
     const getPosts = () => {
       getThread(id)
         .then((response) => {
           if (response.status === 200) {
-            console.log("Get thread success");
-            // link to thread page
-            console.log("thread", response.data);
             if (
               response.data &&
               response.data.length &&
@@ -59,7 +54,7 @@ const ThreadPage = (props) => {
           }
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     };
     if (id) {

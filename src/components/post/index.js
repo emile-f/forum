@@ -10,7 +10,6 @@ const Post = (props) => {
   const [date, setDate] = useState("");
   const [dateUser, setDateUser] = useState("");
   const [color, setColor] = useState({});
-  console.log("props.post", props.post);
 
   const initialSetup = () => {
     setDate(convertDate(props.post.created));

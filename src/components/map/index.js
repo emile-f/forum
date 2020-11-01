@@ -47,8 +47,6 @@ const Map = (props) => {
   }, []);
 
   useLayoutEffect(() => {
-    console.log("Reset locations", props.locations);
-    console.log("Reset locations", series);
     if (series && series.current) {
       series.current.data = props.locations;
     }

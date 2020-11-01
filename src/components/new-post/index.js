@@ -31,9 +31,7 @@ const NewPost = (props) => {
     addPost(payload)
       .then((response) => {
         if (response.status === 200) {
-          console.log("Added Post success");
           // link to thread page
-          console.log("post", response.data);
           const data = response.data;
           // convert to post object
           const post = {
@@ -57,7 +55,7 @@ const NewPost = (props) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

@@ -16,7 +16,6 @@ const Feed = (props) => {
 
   const triggerSearch = () => {
     if (searchTerm !== "") {
-      console.log("Search trigger -> ", searchTerm);
       onSearch(searchTerm);
     }
   };
@@ -24,9 +23,6 @@ const Feed = (props) => {
   useEffect(() => {
     getAllThreads()
       .then((response) => {
-        // On positive response
-        console.log("data", response.data);
-
         // Insert users
         setThreads(response.data);
 
@@ -41,12 +37,8 @@ const Feed = (props) => {
 
   const onSearch = (term) => {
     setDataAvailable(false);
-    console.log("Search", term);
     searchAllThreads(term)
       .then((response) => {
-        // On positive response
-        console.log("data", response.data);
-
         // Insert users
         setSearchThreads(response.data);
 

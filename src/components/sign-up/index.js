@@ -7,7 +7,6 @@ const Register = (props) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(undefined);
-  console.log("this.props in register", props);
 
   const handleClick = () => {
     if (username === "" || password === "" || email === "") {
@@ -22,19 +21,16 @@ const Register = (props) => {
       hashed_password: password,
     };
 
-    console.log("values", payload);
-
     signUpUser(payload)
       .then((response) => {
         if (response.status === 200) {
-          console.log("registration successful");
           props.success(response.data);
         } else if (response.status === 202) {
           setError(response.data);
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

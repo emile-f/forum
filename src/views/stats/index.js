@@ -18,7 +18,6 @@ const Stats = (props) => {
 
         // go over all requests
         data.forEach((response) => {
-          console.log("getData", response);
           if (response && response.data) {
             if (Array.isArray(response.data)) {
               // locations

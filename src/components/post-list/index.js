@@ -3,7 +3,6 @@ import Post from "../post";
 
 function PostList(props) {
   const posts = props.posts;
-  console.log("posts", posts);
   const listItems = posts.map((post, index) => (
     <Post key={index} post={post} />
   ));

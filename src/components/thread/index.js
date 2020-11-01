@@ -10,8 +10,6 @@ const Thread = (props) => {
   const [date, setDate] = useState("");
   const [color, setColor] = useState({});
 
-  console.log("thread props", props);
-
   const initialSetup = () => {
     setDate(convertDateToFromNow(props.thread.created));
     setColor(getRandomBackgroundColor(props.thread.user.name));
