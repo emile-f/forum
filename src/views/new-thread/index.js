@@ -2,18 +2,26 @@ import React, { useState } from "react";
 import "./new-thread.css";
 import { addThread } from "../../api/thread";
 import { withRouter, Redirect } from "react-router-dom";
+import TagsInput from "react-tagsinput";
 
 const NewThread = (props) => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [tags, setTags] = useState([]);
   const [error, setError] = useState(undefined);
   const [threadId, setThreadId] = useState(undefined);
   const [redirect, setRedirect] = useState(false);
 
   const handleClick = () => {
+    if (subject === "" || message === "") {
+      setError("Please fill in all fields");
+      return;
+    }
+
     var payload = {
       subject: subject,
       message: message,
+      tags: JSON.stringify(tags),
     };
 
     addThread(payload)
@@ -45,35 +53,39 @@ const NewThread = (props) => {
   }
 
   return (
-    <div className="thread">
-      <h1>new-thread page here</h1>
+    <div className="new-thread">
+      <h1>Add a thread</h1>
 
-      <input
-        id="subject"
-        alt="subject"
-        autoFocus
-        name="subject"
-        placeholder="Enter thread subject"
-        type="text"
-        onChange={(event) => setSubject(event.target.value)}
-      ></input>
+      <div>
+        <label htmlFor="subject">Subject: </label>
+        <input
+          id="subject"
+          alt="subject"
+          autoFocus
+          name="subject"
+          placeholder="Enter thread subject"
+          type="text"
+          onChange={(event) => setSubject(event.target.value)}
+        ></input>
+      </div>
 
-      <br />
-
-      <textarea
-        id="message"
-        alt="message"
-        name="message"
-        onChange={(event) => setMessage(event.target.value)}
-      ></textarea>
-
-      <br />
+      <div>
+        <label htmlFor="message">Message: </label>
+        <textarea
+          id="message"
+          alt="message"
+          name="message"
+          onChange={(event) => setMessage(event.target.value)}
+        ></textarea>
+      </div>
+      <div>
+        <label htmlFor="tags">Tags: </label>
+        <TagsInput id="tags" value={tags} onChange={setTags} />
+      </div>
 
       <button onClick={handleClick}>Submit</button>
 
-      <br />
-
-      <div>{error ? error : ""}</div>
+      <div className="error">{error ? error : ""}</div>
     </div>
   );
 };
