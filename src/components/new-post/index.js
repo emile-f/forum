@@ -4,7 +4,6 @@ import { currentUser } from "../../service/user.service";
 import { Link, withRouter } from "react-router-dom";
 
 import "./new-post.css";
-// TODO: message when user is not logged in
 
 const NewPost = (props) => {
   const [message, setMessage] = useState("");
