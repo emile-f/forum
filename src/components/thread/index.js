@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./thread.css";
 import { Link } from "react-router-dom";
-import { convertDateToFromNow, getRandomBackgroundColor } from "../../service/helper";
+import {
+  convertDateToFromNow,
+  getRandomBackgroundColor,
+} from "../../service/helper";
 
 const Thread = (props) => {
   const [date, setDate] = useState("");
   const [color, setColor] = useState({});
 
-  console.log("props", props);
-  const threadHeader = "/thread/" + props.thread.id;
-  console.log("threadHeader", threadHeader);
+  console.log("thread props", props);
 
   useEffect(() => {
     setDate(convertDateToFromNow(props.thread.created));
@@ -28,6 +29,16 @@ const Thread = (props) => {
         <div className="date">
           Created by {props.thread.user.name} {date}
         </div>
+        <div className="tags">
+          Tags:{" "}
+          {props.thread.tags &&
+          props.thread.tags.length &&
+          Array.isArray(props.thread.tags)
+            ? props.thread.tags.map((tag, index) => (
+                <span key={index}>{tag}</span>
+              ))
+            : ""}
+        </div>
         <div className="message">
           <p>{props.thread.post.content}</p>
         </div>
@@ -43,7 +54,7 @@ const Thread = (props) => {
       <Link
         className="thread"
         to={{
-          pathname: threadHeader,
+          pathname: "/thread/" + props.thread.id,
           state: { threadId: props.thread.id },
         }}
       >

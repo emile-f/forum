@@ -41,11 +41,38 @@
   font-weight: 300;
 }
 
+/* Only hide when on feed page */
+a.thread .container .content .subject h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
 .thread .container .content .date {
   font-size: 12px;
   margin-top: -20px;
 }
 
+.thread .container .content .tags {
+  font-size: 12px;
+  margin-top: 5px;
+}
+.thread .container .content .tags span {
+  margin-right: 5px;
+  color: white;
+  background-color: #4f5d75;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
 .thread .container .comments > p {
   text-align: center;
+}
+
+/* Only hide when on feed page */
+a.thread .container .content .message p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
