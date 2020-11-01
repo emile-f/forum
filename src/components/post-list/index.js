@@ -1,5 +1,4 @@
 import React from "react";
-import "./user-list.css";
 import Post from "../post";
 
 function PostList(props) {

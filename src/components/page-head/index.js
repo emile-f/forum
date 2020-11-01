@@ -1,5 +1,4 @@
 import React from "react";
-import "./page-head.css";
 
 function PageHead(props) {
   return (

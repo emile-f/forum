@@ -15,7 +15,6 @@ const Header = (props) => {
         <div className="menu">
           <Link to="/">Home</Link>
           <Link to="/thread/new_thread">New thread</Link>
-          {/* <Link to="/user/:profile_name">profile</Link> */}
           <Link to="/stats">Stats</Link>
         </div>
         <div className="filler"></div>

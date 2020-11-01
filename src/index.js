@@ -13,7 +13,6 @@ import Feed from "./views/feed";
 import Thread from "./views/thread";
 import NotFound from "./views/not-found";
 import NewThread from "./views/new-thread";
-import Profile from "./views/profile";
 import Authenticate from "./views/authenticate";
 
 // Components
@@ -29,7 +28,6 @@ ReactDOM.render(
           <Route path="/stats" component={Stats} />
           <AuthenticatedRoute path="/thread/new_thread" component={NewThread} />
           <Route path="/thread/:thread" component={Thread} />
-          <AuthenticatedRoute path="/user/:username" component={Profile} />
           <Route path="/login" component={Authenticate} />
           <Route path="*" component={NotFound} />
         </Switch>

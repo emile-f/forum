@@ -1,5 +1,4 @@
 import React from "react";
-import "./user-list.css";
 import Thread from "../thread";
 
 function ThreadList(props) {
