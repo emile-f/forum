@@ -47,7 +47,7 @@
     "backend": "nodemon server/app.js localhost 3000 --ignore src/*",
     "start": "concurrently \"npm run start-react\" \"npm run backend\"",
     "lint": "eslint src/**/*.js server/**/*.js --fix",
-    "format": "prettier --write **.js **.css **.json"
+    "format": "prettier --write **.js **.css **.json **.html"
   },
   "eslintConfig": {
     "extends": "react-app"

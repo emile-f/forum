@@ -32,6 +32,11 @@ ReactDOM.render(
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
+      <footer>
+        <div class="copyright">
+          Copyright © 2020, David Pan and Emile Ferrand
+        </div>
+      </footer>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
