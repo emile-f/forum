@@ -20,7 +20,7 @@ https://johnguerra.co/classes/webDevelopment_fall_2020/ <br />
 * Clone the repository.
 * Navigate to repository folder in command line.
 * Run npm install to install dependencies. 
-* In command line type 'npm start' to start both the backend as well as frontend react. 
+* In command line type 'npm start:all' to start both the backend as well as frontend react. 
 	* For only backend: 'npm run backend'
 	* For only frontend: 'npm run start-react'
 * In your web browser go to localhost:8080 to visit the forum. (3000 for backend)
