@@ -12,10 +12,12 @@ const Thread = (props) => {
 
   console.log("thread props", props);
 
-  useEffect(() => {
+  const initialSetup = () => {
     setDate(convertDateToFromNow(props.thread.created));
     setColor(getRandomBackgroundColor(props.thread.user.name));
-  }, []);
+  };
+
+  useEffect(initialSetup, []);
 
   const htmlContent = (
     <div className="container">

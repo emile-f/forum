@@ -8,7 +8,6 @@ import { currentUser } from "../../service/user.service";
 // we can restyle this to be in a nav bar
 
 const Header = (props) => {
-  
   return (
     <header className="active" id="scroll-header">
       <nav>

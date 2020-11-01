@@ -34,6 +34,9 @@ const getAmountOfUsers = () => {
       .countDocuments({})
       .then((count) => {
         resolve({ userCount: count });
+      })
+      .catch((err) => {
+        reject(err);
       });
   });
 };

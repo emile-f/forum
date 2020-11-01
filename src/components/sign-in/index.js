@@ -36,7 +36,9 @@ const Login = (props) => {
 
   return (
     <div className="container">
-      <div onClick={props.changeMode} className="top-right-corner">Sign-up</div>
+      <div onClick={props.changeMode} className="top-right-corner">
+        Sign-up
+      </div>
       <h2>Sign-in</h2>
 
       <div>

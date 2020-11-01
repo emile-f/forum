@@ -14,4 +14,4 @@ const addUser = (user) => {
 
 const currentUser = {};
 
-export { currentUser ,addUser};
+export { currentUser, addUser };

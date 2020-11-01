@@ -19,8 +19,8 @@ const mongoDb = (uri, dbName) => {
   currentMongo.client = new MongoClient(uri, options);
 
   // return the promise of the db connection
-  return new Promise((resolve, reject) => {
-    currentMongo.client.connect((err, client) => {
+  return new Promise((resolve) => {
+    currentMongo.client.connect((err) => {
       if (err) throw err;
       currentMongo.connection = currentMongo.client.db(dbName);
 
@@ -32,8 +32,8 @@ const mongoDb = (uri, dbName) => {
 
 // Initialize the database
 // This will be called before we start listening to express server
-const initConnection = async () => {
-  return new Promise(async (resolve, reject) => {
+const initConnection = () => {
+  return new Promise(async (resolve) => {
     // Get uri from the config
     const uri = config.mongo.uri;
     // connect to our forum DB

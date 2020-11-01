@@ -12,12 +12,14 @@ const NewPost = (props) => {
   const [location, setLocation] = useState(undefined);
   const [needToLogin, setNeedToLogin] = useState(false);
 
-  useEffect(() => {
+  const initialSetup = () => {
     setThreadId(props.threadId);
     if (!currentUser.id) {
       setNeedToLogin(true);
     }
-  }, []);
+  };
+
+  useEffect(initialSetup, []);
 
   const handleClick = () => {
     var payload = {

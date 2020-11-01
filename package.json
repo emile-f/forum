@@ -46,7 +46,8 @@
     "start-react": "set PORT=8080 && react-scripts start",
     "backend": "nodemon server/app.js localhost 3000 --ignore src/*",
     "start": "concurrently \"npm run start-react\" \"npm run backend\"",
-    "lint": "eslint src/** server/**"
+    "lint": "eslint src/** server/**",
+    "format": "prettier --write **.js **.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -75,6 +76,7 @@
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-config-react-app": "^6.0.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
   }
 }

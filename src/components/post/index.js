@@ -12,7 +12,7 @@ const Post = (props) => {
   const [color, setColor] = useState({});
   console.log("props.post", props.post);
 
-  useEffect(() => {
+  const initialSetup = () => {
     setDate(convertDate(props.post.created));
     setColor(
       getRandomBackgroundColor(
@@ -24,7 +24,9 @@ const Post = (props) => {
         ? convertDateToFromNow(props.post.user[0].created)
         : "unknown"
     );
-  }, []);
+  };
+
+  useEffect(initialSetup, []);
 
   return (
     <div className="post-container">

@@ -15,8 +15,7 @@ const ThreadPage = (props) => {
   const [posts, setPosts] = useState({});
 
   // Get thread here
-
-  useEffect(() => {
+  const initialSetup = () => {
     if (
       props.location &&
       props.location.state &&
@@ -28,7 +27,9 @@ const ThreadPage = (props) => {
     } else {
       setRedirectToHome(true);
     }
-  }, []);
+  };
+
+  useEffect(initialSetup, []);
 
   useEffect(() => {
     console.log("Id updated", id);

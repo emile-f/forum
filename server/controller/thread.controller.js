@@ -233,6 +233,9 @@ const getAmountOfThreads = () => {
       .countDocuments({})
       .then((count) => {
         resolve({ threadCount: count });
+      })
+      .catch((err) => {
+        reject(err);
       });
   });
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Loader from "react-loader-spinner";
 import { getUserStats } from "../../api/user";
