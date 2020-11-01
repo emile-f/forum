@@ -33,7 +33,7 @@ ReactDOM.render(
         </Switch>
       </div>
       <footer>
-        <div class="copyright">
+        <div className="copyright">
           Copyright © 2020, David Pan and Emile Ferrand
         </div>
       </footer>
