@@ -12,7 +12,7 @@ const addThread = async (req, res) => {
       !req.body.userId ||
       (req.body.userId && req.body.userId.length !== 36)
     ) {
-      res.status(400).send("UserId is not valid"); // Invalid ID length
+      return res.status(400).send("UserId is not valid"); // Invalid ID length
     } else {
       const idExists = await helper.doesUserExistByUserId(req.body.userId);
       if (!idExists) {
