@@ -1,5 +1,6 @@
 const express = require("express");
 const threadController = require("../controller/thread.controller");
+const locationController = require("../controller/location.controller");
 const Thread = require("../models/thread");
 const Post = require("../models/post");
 const router = express.Router();
@@ -140,6 +141,18 @@ const addPost = async (req, res) => {
       if (!idExists) {
         console.log("threadID doesn't exist");
         return res.status(400).send("threadID is not valid"); // ID doesn't exist
+      }
+    }
+
+    // insert location in location database
+    if (req.body.location) {
+      try {
+        const location = JSON.parse(req.body.location);
+        if (location && location.long && location.lat) {
+          await locationController.addLocation(location.long, location.lat);
+        }
+      } catch (error) {
+        console.error("Failed to parse location");
       }
     }
 
