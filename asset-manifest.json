@@ -1,31 +1,31 @@
 {
   "files": {
-    "main.css": "/forum/static/css/main.5cda5187.chunk.css",
-    "main.js": "/forum/static/js/main.9bbff74b.chunk.js",
-    "main.js.map": "/forum/static/js/main.9bbff74b.chunk.js.map",
-    "runtime-main.js": "/forum/static/js/runtime-main.5097dfeb.js",
-    "runtime-main.js.map": "/forum/static/js/runtime-main.5097dfeb.js.map",
+    "main.css": "/forum/static/css/main.eb49d1c3.chunk.css",
+    "main.js": "/forum/static/js/main.89c3fb32.chunk.js",
+    "main.js.map": "/forum/static/js/main.89c3fb32.chunk.js.map",
+    "runtime-main.js": "/forum/static/js/runtime-main.9d919a27.js",
+    "runtime-main.js.map": "/forum/static/js/runtime-main.9d919a27.js.map",
     "xlsx.js": "/forum/static/js/xlsx.0bd349ff.chunk.js",
     "xlsx.js.map": "/forum/static/js/xlsx.0bd349ff.chunk.js.map",
-    "static/js/3.07d31b61.chunk.js": "/forum/static/js/3.07d31b61.chunk.js",
-    "static/js/3.07d31b61.chunk.js.map": "/forum/static/js/3.07d31b61.chunk.js.map",
+    "static/js/3.020e522b.chunk.js": "/forum/static/js/3.020e522b.chunk.js",
+    "static/js/3.020e522b.chunk.js.map": "/forum/static/js/3.020e522b.chunk.js.map",
     "static/js/4.d72da488.chunk.js": "/forum/static/js/4.d72da488.chunk.js",
     "static/js/4.d72da488.chunk.js.map": "/forum/static/js/4.d72da488.chunk.js.map",
     "static/js/5.c2233374.chunk.js": "/forum/static/js/5.c2233374.chunk.js",
     "static/js/5.c2233374.chunk.js.map": "/forum/static/js/5.c2233374.chunk.js.map",
-    "static/js/6.02431abe.chunk.js": "/forum/static/js/6.02431abe.chunk.js",
-    "static/js/6.02431abe.chunk.js.map": "/forum/static/js/6.02431abe.chunk.js.map",
+    "static/js/6.14ac8c2b.chunk.js": "/forum/static/js/6.14ac8c2b.chunk.js",
+    "static/js/6.14ac8c2b.chunk.js.map": "/forum/static/js/6.14ac8c2b.chunk.js.map",
     "index.html": "/forum/index.html",
-    "precache-manifest.703d75453be2a4f677abbdb6f5eea238.js": "/forum/precache-manifest.703d75453be2a4f677abbdb6f5eea238.js",
+    "precache-manifest.941869bba6ccae199f4676b420170a3a.js": "/forum/precache-manifest.941869bba6ccae199f4676b420170a3a.js",
     "service-worker.js": "/forum/service-worker.js",
-    "static/css/main.5cda5187.chunk.css.map": "/forum/static/css/main.5cda5187.chunk.css.map",
-    "static/js/3.07d31b61.chunk.js.LICENSE.txt": "/forum/static/js/3.07d31b61.chunk.js.LICENSE.txt",
-    "static/js/6.02431abe.chunk.js.LICENSE.txt": "/forum/static/js/6.02431abe.chunk.js.LICENSE.txt"
+    "static/css/main.eb49d1c3.chunk.css.map": "/forum/static/css/main.eb49d1c3.chunk.css.map",
+    "static/js/3.020e522b.chunk.js.LICENSE.txt": "/forum/static/js/3.020e522b.chunk.js.LICENSE.txt",
+    "static/js/6.14ac8c2b.chunk.js.LICENSE.txt": "/forum/static/js/6.14ac8c2b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5097dfeb.js",
-    "static/js/3.07d31b61.chunk.js",
-    "static/css/main.5cda5187.chunk.css",
-    "static/js/main.9bbff74b.chunk.js"
+    "static/js/runtime-main.9d919a27.js",
+    "static/js/3.020e522b.chunk.js",
+    "static/css/main.eb49d1c3.chunk.css",
+    "static/js/main.89c3fb32.chunk.js"
   ]
 }
