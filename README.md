@@ -26,6 +26,18 @@ https://johnguerra.co/classes/webDevelopment_fall_2020/ <br />
 * In your web browser go to localhost:8080 to visit the forum. (3000 for backend)
 
 
+## Example screenshots: 
+
+* The create thread page: 
+![Image of the Create Thread Page](https://github.com/emile-f/forum/blob/main/Screenshots/CreateThread.png)
+
+* The Thread and replies page: 
+![Image of the Thread Page](https://github.com/emile-f/forum/blob/main/Screenshots/Thread.png)
+
+* The world map page: 
+![Image of the World Map Page](https://github.com/emile-f/forum/blob/main/Screenshots/WorldMap.png)
+
+
 ## License
 
 > You can check out the full license [here](/LICENSE)
