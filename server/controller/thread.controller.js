@@ -46,11 +46,12 @@ const readThreads = (searchTerm) => {
     if (searchTerm) {
       query.unshift({ $match: { $text: { $search: searchTerm } } });
     }
-
+    // Sort in reverse order
     mongoClient
       .getDatabase()
       .connection.collection("thread")
       .aggregate(query)
+      .sort({ created: -1 })
       .toArray((err, docs) => {
         if (err) {
           console.error("error: readThreads", err);
