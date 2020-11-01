@@ -3,7 +3,7 @@
 config.json
 
 # react build folder
-build
+# build
 
 # Logs
 logs
