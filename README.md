@@ -25,6 +25,9 @@ https://johnguerra.co/classes/webDevelopment_fall_2020/ <br />
 	* For only frontend: 'npm run start-react'
 * In your web browser go to localhost:8080 to visit the forum. (3000 for backend)
 
+### project 2 last commit:
+* hash: d5b2032aebb24808930d756519730e1c04a58e19
+* url: https://github.com/emile-f/forum/tree/d5b2032aebb24808930d756519730e1c04a58e19
 
 ## Example screenshots: 
 
