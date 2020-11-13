@@ -112,3 +112,5 @@ dist
 
 #npm package-lock.json file
 package-lock.json
+
+.DS_Store
