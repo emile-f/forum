@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, HashRouter as Router } from "react-router-dom";
 
 // Route
 import AuthenticatedRoute from "./components/authenticated-route";
@@ -20,7 +20,7 @@ import Header from "./components/header";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename="/forum/">
+    <Router >
       <Header />
       <div className="forum-body">
         <Switch>

@@ -42,7 +42,7 @@
   "scripts": {
     "start": "node server/app.js",
     "build:react": "react-scripts build",
-    "start-react": "set PORT=8080 && react-scripts start",
+    "start-react": "PORT=8080 react-scripts start",
     "backend": "nodemon server/app.js localhost 3000 --ignore src/*",
     "start:all": "concurrently \"npm run start-react\" \"npm run backend\"",
     "lint": "eslint src/**/*.js server/**/*.js --fix",
