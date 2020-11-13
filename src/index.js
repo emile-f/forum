@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { Switch, Route, HashRouter as Router } from "react-router-dom";
-
 // Route
 import AuthenticatedRoute from "./components/authenticated-route";
 
@@ -17,6 +16,12 @@ import Authenticate from "./views/authenticate";
 
 // Components
 import Header from "./components/header";
+
+// Services
+import { getUser } from "./service/user.service";
+
+// Load cached user
+getUser();
 
 ReactDOM.render(
   <React.StrictMode>
