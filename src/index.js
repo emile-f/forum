@@ -16,6 +16,7 @@ import Authenticate from "./views/authenticate";
 
 // Components
 import Header from "./components/header";
+import Footer from "./components/footer";
 
 // Services
 import { getUser } from "./service/user.service";
@@ -27,7 +28,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router >
       <Header />
-      <div className="forum-body">
+      <div id="forum-body" className="forum-body">
         <Switch>
           <Route exact path="/" component={Feed} />
           <Route path="/stats" component={Stats} />
@@ -37,11 +38,7 @@ ReactDOM.render(
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
-      <footer>
-        <div className="copyright">
-          Copyright © 2020, David Pan and Emile Ferrand
-        </div>
-      </footer>
+      <Footer />
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
