@@ -101,7 +101,7 @@ const NewPost = (props) => {
           <label htmlFor="location">Share location: </label>
           <input onChange={askLocation} type="checkbox"></input>
         </div>
-        <button onClick={handleClick}>Submit</button>
+        <button aria-label="Add post to thread" onClick={handleClick}>Submit</button>
         <div>{error ? error : ""}</div>
       </div>
     );

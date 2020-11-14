@@ -64,7 +64,7 @@ const Login = (props) => {
         ></input>
       </div>
 
-      <button onClick={handleClick}>Sign-in</button>
+      <button aria-label="Sign into forum" onClick={handleClick}>Sign-in</button>
 
       <div className="error">{error ? error : ""}</div>
     </div>
