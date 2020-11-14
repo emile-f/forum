@@ -21,6 +21,7 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.0.0",
     "gh-pages": "^3.1.0",
@@ -45,7 +46,7 @@
     "start-react": "PORT=8080 react-scripts start",
     "backend": "nodemon server/app.js localhost 3000 --ignore src/*",
     "start:all": "concurrently \"npm run start-react\" \"npm run backend\"",
-    "lint": "eslint src/**/*.js server/**/*.js --fix",
+    "lint": "eslint src/**/*.js server/**/*.js",
     "format": "prettier --write **.js **.css **.json **.html"
   },
   "eslintConfig": {

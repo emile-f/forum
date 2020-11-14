@@ -81,7 +81,7 @@ const NewThread = (props) => {
         <TagsInput id="tags" value={tags} onChange={setTags} />
       </div>
 
-      <button onClick={handleClick}>Submit</button>
+      <button aria-label="Create a new thread" onClick={handleClick}>Submit</button>
 
       <div className="error">{error ? error : ""}</div>
     </div>

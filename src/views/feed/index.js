@@ -17,6 +17,8 @@ const Feed = (props) => {
   const triggerSearch = () => {
     if (searchTerm !== "") {
       onSearch(searchTerm);
+    } else {
+      setSearchThreads(threads);
     }
   };
 
@@ -70,14 +72,14 @@ const Feed = (props) => {
               threads={searchThreads.length > 0 ? searchThreads : threads}
             />
           ) : (
-            <Loader
-              type="Puff"
-              color="#4f5d75"
-              height={100}
-              width={100}
-              className="loader"
-            />
-          )
+              <Loader
+                type="Puff"
+                color="#4f5d75"
+                height={100}
+                width={100}
+                className="loader"
+              />
+            )
         }
       </div>
 
@@ -95,8 +97,8 @@ const Feed = (props) => {
             {searchThreads.length > 0 ? "Reset search" : "No threads found"}
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </aside>
     </div>
   );
