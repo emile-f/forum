@@ -25,4 +25,4 @@ const deleteCookie = (cname) => {
     setCookie(cname, null, -1);
 };
 
-export { setCookie, getCookie };
+export { setCookie, getCookie , deleteCookie};

@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "./cookie.service";
+import { deleteCookie, getCookie, setCookie } from "./cookie.service";
 const COOKIE_NAME = "forum-user";
 // Should have the following properties
 /*
@@ -31,7 +31,13 @@ const getUser = () => {
   return currentUser;
 };
 
+const signOut = () => {
+  Object.assign(currentUser,);
+  deleteCookie(COOKIE_NAME);
+  window.location.reload(true);
+}
+
 let initialLoad = false;
 const currentUser = {};
 
-export { currentUser, addUser, getUser };
+export { currentUser, addUser, getUser, signOut };
