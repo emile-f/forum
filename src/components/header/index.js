@@ -19,7 +19,7 @@ const Header = (props) => {
         <div className="filler"></div>
         <div className="login">
           {currentUser.id ? (
-            <div>Hello {currentUser.name}   <button onClick={signOut}> Logout </button></div>
+            <div>Hello {currentUser.name} <button onClick={signOut}> Logout </button></div>
           ) : (
             <Link
               to={{

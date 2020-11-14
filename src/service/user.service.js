@@ -34,7 +34,7 @@ const getUser = () => {
 const signOut = () => {
   Object.assign(currentUser,);
   deleteCookie(COOKIE_NAME);
-  window.location.reload(true);
+  window.location.reload();
 }
 
 let initialLoad = false;
