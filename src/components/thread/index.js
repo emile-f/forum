@@ -19,9 +19,6 @@ const Thread = (props) => {
 
   const htmlContent = (
     <div className="container">
-      <div className="vertical-centering icon">
-        <div style={color}>{props.thread.user.name.substring(0, 2)}</div>
-      </div>
       <div className="content">
         <div className="subject">
           <h3>{props.thread.subject}</h3>
@@ -38,9 +35,6 @@ const Thread = (props) => {
                 <span key={index}>{tag}</span>
               ))
             : ""}
-        </div>
-        <div className="message">
-          <p>{props.thread.post.content}</p>
         </div>
       </div>
       <div className="comments vertical-centering">

@@ -37,7 +37,7 @@
 }
 
 .thread .container .content .subject {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 300;
 }
 
@@ -50,12 +50,12 @@ a.thread .container .content .subject h3 {
 }
 
 .thread .container .content .date {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: -20px;
 }
 
 .thread .container .content .tags {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 5px;
 }
 .thread .container .content .tags span {
