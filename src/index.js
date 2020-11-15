@@ -26,7 +26,7 @@ getUser();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router >
+    <Router>
       <Header />
       <div id="forum-body" className="forum-body">
         <Switch>

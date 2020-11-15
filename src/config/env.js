@@ -1,7 +1,7 @@
 const environment = {};
 
 environment["development"] = {
-  api: "http://localhost:3000",
+  api: "https://webdev-forum-backend.herokuapp.com",
 };
 
 environment["production"] = {

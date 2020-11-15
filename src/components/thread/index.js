@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./thread.css";
 import { Link } from "react-router-dom";
-import {
-  convertDateToFromNow,
-  getRandomBackgroundColor,
-} from "../../service/helper";
+import { convertDateToFromNow } from "../../service/helper";
 
 const Thread = (props) => {
   const [date, setDate] = useState("");
-  const [color, setColor] = useState({});
 
   const initialSetup = () => {
     setDate(convertDateToFromNow(props.thread.created));
-    setColor(getRandomBackgroundColor(props.thread.user.name));
   };
 
   useEffect(initialSetup, []);

@@ -6,13 +6,24 @@ import Loader from "react-loader-spinner";
 import PostList from "../../components/post-list";
 import NewPost from "../../components/new-post";
 import Thread from "../../components/thread";
+import ReactPaginate from "react-paginate";
+
 const ThreadPage = (props) => {
   // declare states
   const [id, setId] = useState(undefined);
   const [redirectToHome, setRedirectToHome] = useState(false);
   const [threadLoaded, setThreadLoaded] = useState(false);
   const [thread, setThread] = useState({});
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [visiblePosts, setVisiblePosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const PER_PAGE = 10;
+  const offset = currentPage * PER_PAGE;
+
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
+  }
 
   // Get thread here
   const initialSetup = () => {
@@ -30,6 +41,11 @@ const ThreadPage = (props) => {
   };
 
   useEffect(initialSetup, []);
+
+  useEffect(() => {
+    const currentPageData = posts.slice(offset, offset + PER_PAGE);
+    setVisiblePosts(currentPageData);
+  }, [currentPage, offset, posts]);
 
   useEffect(() => {
     const getPosts = () => {
@@ -85,11 +101,33 @@ const ThreadPage = (props) => {
             <Thread clickable={false} thread={thread} />
 
             <div className="content">
-              <PostList posts={posts} />
+              <ReactPaginate
+                previousLabel={"← Previous"}
+                nextLabel={"Next →"}
+                pageCount={Math.ceil(posts.length / PER_PAGE)}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
+              />
+              <PostList posts={visiblePosts} />
+              <ReactPaginate
+                previousLabel={"← Previous"}
+                nextLabel={"Next →"}
+                pageCount={Math.ceil(posts.length / PER_PAGE)}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
+              />
               <aside>
-                <div onClick={scrollToNewPost}>
-                  <div className="create-new-post">Create new post</div>
-                </div>
+                <button className="create-new-post" onClick={scrollToNewPost}>
+                  Create new post
+                </button>
               </aside>
             </div>
 

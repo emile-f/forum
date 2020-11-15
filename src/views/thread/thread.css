@@ -13,7 +13,7 @@
   width: 22%;
 }
 
-.thread aside a {
+.thread aside button {
   text-decoration: none;
   color: black;
 }
@@ -27,8 +27,42 @@
   height: 50px;
   text-align: center;
   line-height: 50px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
-.thread aside .create-new-post:hover {
+/* Pagination */
+
+.thread .pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 13px;
+}
+
+.thread .previous {
+  margin-right: 0;
+}
+
+.thread .pagination li {
+  margin-right: 13px;
+  height: 30px;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: transparent;
+  border: #4f5d75 solid 1px;
   cursor: pointer;
+  color: #4f5d75;
+  line-height: 30px;
+  user-select: none;
+}
+
+.thread .pagination .pagination__link--active {
+  background-color: #4f5d75;
+  color: white;
+}
+.thread .pagination .pagination__link--disabled {
+  border: #b1b1b1 solid 1px;
+  color: #b1b1b1;
 }

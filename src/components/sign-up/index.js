@@ -80,7 +80,9 @@ const Register = (props) => {
         ></input>
       </div>
 
-      <button aria-label="Sign up to forum" onClick={handleClick}>Sign-up</button>
+      <button aria-label="Sign up to forum" onClick={handleClick}>
+        Sign-up
+      </button>
 
       <div className="error">{error ? error : ""}</div>
     </div>

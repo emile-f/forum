@@ -32,10 +32,10 @@ const getUser = () => {
 };
 
 const signOut = () => {
-  Object.assign(currentUser,);
+  Object.assign(currentUser);
   deleteCookie(COOKIE_NAME);
   window.location.reload();
-}
+};
 
 let initialLoad = false;
 const currentUser = {};

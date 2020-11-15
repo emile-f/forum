@@ -20,7 +20,9 @@ const SearchBar = (props) => {
       // Execute a function when the user releases a key on the keyboard
       inputRef.current.addEventListener("keyup", triggerEvent);
       // Remove on destroy
-      return () => { inputRef.current.removeEventListener("keyup", triggerEvent); };
+      return () => {
+        inputRef.current.removeEventListener("keyup", triggerEvent);
+      };
     }
   };
 
@@ -38,7 +40,13 @@ const SearchBar = (props) => {
         value={props.value}
         onChange={(event) => props.onSearch(event.target.value)}
       ></input>
-      <button ref={SearchButtonRef} aria-label="Search in Threads" onClick={props.search}>Search</button>
+      <button
+        ref={SearchButtonRef}
+        aria-label="Search in Threads"
+        onClick={props.search}
+      >
+        Search
+      </button>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Footer = () => {
     });
 
     // Add observer for the forum body
-    var observer = new ResizeObserver(entries => {
+    var observer = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const cr = entry.contentRect;
         setForumHeight(cr.height + cr.top);

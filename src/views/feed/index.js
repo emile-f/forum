@@ -6,13 +6,20 @@ import Loader from "react-loader-spinner";
 import PageHead from "../../components/page-head";
 import { Link } from "react-router-dom";
 import SearchBar from "../../components/search-bar";
+import ReactPaginate from "react-paginate";
 
 const Feed = (props) => {
   const [threads, setThreads] = useState([]);
+  const [searchThreads, setSearchThreads] = useState([]);
+  const [visibleThreads, setVisibleThreads] = useState([]);
+
   const [dataAvailable, setDataAvailable] = useState(false);
   const [searchDone, setSearchDone] = useState(false);
-  const [searchThreads, setSearchThreads] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const PER_PAGE = 10;
+  const offset = currentPage * PER_PAGE;
 
   const triggerSearch = () => {
     if (searchTerm !== "") {
@@ -21,6 +28,21 @@ const Feed = (props) => {
       setSearchThreads(threads);
     }
   };
+
+  useEffect(() => {
+    if (searchThreads.length > 0) {
+      // search list
+      const currentPageData = searchThreads.slice(offset, offset + PER_PAGE);
+      setVisibleThreads(currentPageData);
+    } else {
+      const currentPageData = threads.slice(offset, offset + PER_PAGE);
+      setVisibleThreads(currentPageData);
+    }
+  }, [threads, searchThreads, offset]);
+
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
+  }
 
   useEffect(() => {
     getAllThreads()
@@ -47,6 +69,8 @@ const Feed = (props) => {
         // Let UI know that the users are available
         setDataAvailable(true);
         setSearchDone(true);
+
+        // update the pagination
       })
       .catch((err) => {
         // TODO: Show error message
@@ -68,18 +92,48 @@ const Feed = (props) => {
         {
           // Show loader until we load the user list
           dataAvailable ? (
-            <ThreadList
-              threads={searchThreads.length > 0 ? searchThreads : threads}
-            />
-          ) : (
-              <Loader
-                type="Puff"
-                color="#4f5d75"
-                height={100}
-                width={100}
-                className="loader"
+            <React.Fragment>
+              <ReactPaginate
+                previousLabel={"← Previous"}
+                nextLabel={"Next →"}
+                pageCount={Math.ceil(
+                  (searchThreads.length > 0
+                    ? searchThreads.length
+                    : threads.length) / PER_PAGE
+                )}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
               />
-            )
+              <ThreadList threads={visibleThreads} />
+              <ReactPaginate
+                previousLabel={"← Previous"}
+                nextLabel={"Next →"}
+                pageCount={Math.ceil(
+                  (searchThreads.length > 0
+                    ? searchThreads.length
+                    : threads.length) / PER_PAGE
+                )}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
+              />
+            </React.Fragment>
+          ) : (
+            <Loader
+              type="Puff"
+              color="#4f5d75"
+              height={100}
+              width={100}
+              className="loader"
+            />
+          )
         }
       </div>
 
@@ -93,12 +147,12 @@ const Feed = (props) => {
           onSearch={setSearchTerm}
         />
         {searchDone ? (
-          <div onClick={resetSearch} className="search-info">
+          <button onClick={resetSearch} className="search-info">
             {searchThreads.length > 0 ? "Reset search" : "No threads found"}
-          </div>
+          </button>
         ) : (
-            ""
-          )}
+          ""
+        )}
       </aside>
     </div>
   );

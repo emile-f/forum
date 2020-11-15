@@ -59,7 +59,6 @@ const NewThread = (props) => {
         <input
           id="subject"
           alt="subject"
-          autoFocus
           name="subject"
           placeholder="Enter thread subject"
           type="text"
@@ -81,7 +80,9 @@ const NewThread = (props) => {
         <TagsInput id="tags" value={tags} onChange={setTags} />
       </div>
 
-      <button aria-label="Create a new thread" onClick={handleClick}>Submit</button>
+      <button aria-label="Create a new thread" onClick={handleClick}>
+        Submit
+      </button>
 
       <div className="error">{error ? error : ""}</div>
     </div>

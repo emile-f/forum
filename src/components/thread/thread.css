@@ -23,14 +23,6 @@
   display: flex;
 }
 
-.thread .container .icon > div {
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  line-height: 70px;
-  border-radius: 35px;
-}
-
 .thread .container .content {
   width: 80%;
   margin-left: 25px;
