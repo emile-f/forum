@@ -19,7 +19,7 @@ const Header = (props) => {
         {currentUser.id ? (
           <div>
             <div className="user">Hello {currentUser.name}</div>
-            <button onClick={signOut}> Logout </button>
+              <button onClick={signOut} aria-label="Logout button"> Logout </button>
           </div>
         ) : (
             <Link
