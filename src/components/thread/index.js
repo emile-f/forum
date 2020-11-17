@@ -24,11 +24,11 @@ const Thread = (props) => {
         <div className="tags">
           Tags:{" "}
           {props.thread.tags &&
-            props.thread.tags.length &&
-            Array.isArray(props.thread.tags)
+          props.thread.tags.length &&
+          Array.isArray(props.thread.tags)
             ? props.thread.tags.map((tag, index) => (
-              <span key={index}>{tag}</span>
-            ))
+                <span key={index}>{tag}</span>
+              ))
             : ""}
         </div>
       </div>

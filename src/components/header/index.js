@@ -11,26 +11,35 @@ const Header = (props) => {
   return (
     <header role="banner" className="active" id="scroll-header">
       <nav role="navigation" className="menu">
-        <Link aria-label="Navigate to Home page" to="/">Home</Link>
-        <Link aria-label="Navigate to new thread page" to="/thread/new_thread">New thread</Link>
-        <Link aria-label="Navigate to statistics page" to="/stats">Stats</Link>
+        <Link aria-label="Navigate to Home page" to="/">
+          Home
+        </Link>
+        <Link aria-label="Navigate to new thread page" to="/thread/new_thread">
+          New thread
+        </Link>
+        <Link aria-label="Navigate to statistics page" to="/stats">
+          Stats
+        </Link>
       </nav>
       <div className="login">
         {currentUser.id ? (
           <div>
             <div className="user">Hello {currentUser.name}</div>
-              <button onClick={signOut} aria-label="Logout button"> Logout </button>
+            <button onClick={signOut} aria-label="Logout button">
+              {" "}
+              Logout{" "}
+            </button>
           </div>
         ) : (
-            <Link
-              to={{
-                pathname: "/login",
-                state: { from: props.location },
-              }}
-            >
-              Sign-In/Sign-up
-            </Link>
-          )}
+          <Link
+            to={{
+              pathname: "/login",
+              state: { from: props.location },
+            }}
+          >
+            Sign-In/Sign-up
+          </Link>
+        )}
       </div>
     </header>
   );

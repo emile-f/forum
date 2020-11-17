@@ -27,7 +27,7 @@ export const getRandomBackgroundColor = (str) => {
 
   const style = {
     backgroundColor: color.rgb(),
-    color: color.isDark() ? "white" : "black"
+    color: color.isDark() ? "white" : "black",
   };
   return style;
 };

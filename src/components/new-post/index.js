@@ -100,7 +100,11 @@ const NewPost = (props) => {
         ></textarea>
         <div className="location">
           <label htmlFor="location">Share location: </label>
-          <input aria-label="Enable share location"  onChange={askLocation} type="checkbox"></input>
+          <input
+            aria-label="Enable share location"
+            onChange={askLocation}
+            type="checkbox"
+          ></input>
         </div>
         <button aria-label="Add post to thread" onClick={handleClick}>
           Submit
