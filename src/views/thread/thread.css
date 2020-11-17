@@ -6,19 +6,19 @@
   position: relative;
 }
 
-.thread aside {
+.thread .aside {
   position: absolute;
   right: 0;
   top: 0;
   width: 22%;
 }
 
-.thread aside button {
+.thread .aside button {
   text-decoration: none;
   color: black;
 }
 
-.thread aside .create-new-post {
+.thread .aside .create-new-post {
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);

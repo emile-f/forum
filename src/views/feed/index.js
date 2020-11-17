@@ -126,18 +126,18 @@ const Feed = (props) => {
               />
             </React.Fragment>
           ) : (
-            <Loader
-              type="Puff"
-              color="#4f5d75"
-              height={100}
-              width={100}
-              className="loader"
-            />
-          )
+              <Loader
+                type="Puff"
+                color="#4f5d75"
+                height={100}
+                width={100}
+                className="loader"
+              />
+            )
         }
       </div>
 
-      <aside>
+      <div className="aside">
         <Link to="/thread/new_thread">
           <div className="create-new-thread">Create new thread</div>
         </Link>
@@ -151,9 +151,9 @@ const Feed = (props) => {
             {searchThreads.length > 0 ? "Reset search" : "No threads found"}
           </button>
         ) : (
-          ""
-        )}
-      </aside>
+            ""
+          )}
+      </div>
     </div>
   );
 };

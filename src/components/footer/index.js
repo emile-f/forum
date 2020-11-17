@@ -38,7 +38,7 @@ const Footer = () => {
   }, [windowHeight, forumHeight]);
 
   return (
-    <footer className={className}>
+    <footer role="contentinfo" className={className}>
       <div className="copyright">
         Copyright © 2020, David Pan and Emile Ferrand
       </div>

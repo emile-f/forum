@@ -1,4 +1,5 @@
 import * as moment from "moment";
+var Color = require("color");
 
 export const convertDateToFromNow = (date) => {
   return moment(date).fromNow();
@@ -18,12 +19,15 @@ export const getRandomBackgroundColor = (str) => {
     hash = _charCode + ((hash << 5) - hash);
   }
 
-  var l = (saturation * saturation) % 100;
+  var light = (saturation * saturation) % 100;
 
-  var h = hash % 360;
+  var hue = hash % 360;
+
+  const color = Color("hsl(" + hue + ", " + saturation + "%, " + light + "%)");
 
   const style = {
-    backgroundColor: "hsl(" + h + ", " + saturation + "%, " + l + "%)",
+    backgroundColor: color.rgb(),
+    color: color.isDark() ? "white" : "black"
   };
   return style;
 };

@@ -36,6 +36,7 @@ const SearchBar = (props) => {
         alt="search"
         name="search"
         placeholder="Search for thread"
+        aria-label="Search for thread"
         type="text"
         value={props.value}
         onChange={(event) => props.onSearch(event.target.value)}

@@ -77,7 +77,11 @@ const NewThread = (props) => {
       </div>
       <div>
         <label htmlFor="tags">Tags: </label>
-        <TagsInput id="tags" value={tags} onChange={setTags} />
+        <TagsInput inputProps={
+          {
+            "aria-label": "Add a tag to the new thread"
+          }
+        } id="tags" value={tags} onChange={setTags} />
       </div>
 
       <button aria-label="Create a new thread" onClick={handleClick}>

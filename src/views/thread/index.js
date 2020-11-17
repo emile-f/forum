@@ -124,11 +124,11 @@ const ThreadPage = (props) => {
                 disabledClassName={"pagination__link--disabled"}
                 activeClassName={"pagination__link--active"}
               />
-              <aside>
+              <div className="aside">
                 <button className="create-new-post" onClick={scrollToNewPost}>
                   Create new post
                 </button>
-              </aside>
+              </div>
             </div>
 
             <br />

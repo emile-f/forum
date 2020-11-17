@@ -28,7 +28,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Header />
-      <div id="forum-body" className="forum-body">
+      <div role="main" id="forum-body" className="forum-body">
         <Switch>
           <Route exact path="/" component={Feed} />
           <Route path="/stats" component={Stats} />

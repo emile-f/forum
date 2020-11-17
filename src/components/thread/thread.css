@@ -34,11 +34,12 @@
 }
 
 /* Only hide when on feed page */
-a.thread .container .content .subject h3 {
+a.thread .container .content .subject h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+  font-size: 23px;
 }
 
 .thread .container .content .date {

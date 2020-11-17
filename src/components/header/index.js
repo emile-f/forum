@@ -9,20 +9,19 @@ import { currentUser, signOut } from "../../service/user.service";
 
 const Header = (props) => {
   return (
-    <header className="active" id="scroll-header">
-      <nav>
-        <div className="menu">
-          <Link to="/">Home</Link>
-          <Link to="/thread/new_thread">New thread</Link>
-          <Link to="/stats">Stats</Link>
-        </div>
-        <div className="login">
-          {currentUser.id ? (
-            <div>
-              <div className="user">Hello {currentUser.name}</div>
-              <button onClick={signOut}> Logout </button>
-            </div>
-          ) : (
+    <header role="banner" className="active" id="scroll-header">
+      <nav role="navigation" className="menu">
+        <Link aria-label="Navigate to Home page" to="/">Home</Link>
+        <Link aria-label="Navigate to new thread page" to="/thread/new_thread">New thread</Link>
+        <Link aria-label="Navigate to statistics page" to="/stats">Stats</Link>
+      </nav>
+      <div className="login">
+        {currentUser.id ? (
+          <div>
+            <div className="user">Hello {currentUser.name}</div>
+            <button onClick={signOut}> Logout </button>
+          </div>
+        ) : (
             <Link
               to={{
                 pathname: "/login",
@@ -32,8 +31,7 @@ const Header = (props) => {
               Sign-In/Sign-up
             </Link>
           )}
-        </div>
-      </nav>
+      </div>
     </header>
   );
 };
