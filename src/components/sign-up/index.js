@@ -41,7 +41,7 @@ const Register = (props) => {
       <div onClick={props.changeMode} className="top-right-corner">
         Sign-in
       </div>
-      <h2>Sign-up</h2>
+      <h1>Sign-up</h1>
 
       <div>
         <label htmlFor="name">Username: </label>
