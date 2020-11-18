@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.css";
 import { Link, withRouter } from "react-router-dom";
-import { currentUser, signOut } from "../../service/user.service";
+import { currentUser, logOut } from "../../service/user.service";
 
 // Change the page in router to the correct querystring
 // uses react-router linking
@@ -25,7 +25,7 @@ const Header = (props) => {
         {currentUser.id ? (
           <div>
             <div className="user">Hello {currentUser.name}</div>
-            <button onClick={signOut} aria-label="Logout button">
+            <button onClick={logOut} aria-label="Logout button">
               {" "}
               Logout{" "}
             </button>
