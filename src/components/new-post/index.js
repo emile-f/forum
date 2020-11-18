@@ -89,8 +89,7 @@ const NewPost = (props) => {
   } else {
     return (
       <div id={props.id} className="new-post">
-        <h1>Add post:</h1>
-
+        <h2>Add post:</h2>
         <textarea
           id="message"
           alt="message"
