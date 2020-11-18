@@ -6,14 +6,16 @@ const Footer = () => {
   const [forumHeight, setForumHeight] = useState(0);
   const [className, setClassName] = useState("");
 
+  const setWindow = (event) => {
+    setWindowHeight(event.target.innerHeight);
+  };
+
   const attachResizeObserver = () => {
     // Set initial window height
     setWindowHeight(window.innerHeight);
 
     // Keep track of the window changes
-    window.addEventListener("resize", (event) => {
-      setWindowHeight(event.target.innerHeight);
-    });
+    window.addEventListener("resize", setWindow);
 
     // Add observer for the forum body
     var observer = new ResizeObserver((entries) => {
@@ -26,9 +28,16 @@ const Footer = () => {
     // // Observe one or multiple elements
     const forumBody = document.getElementById("forum-body");
     observer.observe(forumBody);
+
+    return () => {
+      window.removeEventListener("resize", setWindow);
+      observer.unobserve(forumBody);
+    };
   };
 
   useEffect(attachResizeObserver, []);
+
+
   useEffect(() => {
     if (windowHeight > forumHeight) {
       setClassName("bottom");
