@@ -25,7 +25,7 @@ const Footer = () => {
       }
     });
 
-    // // Observe one or multiple elements
+    // Observe one or multiple elements
     const forumBody = document.getElementById("forum-body");
     observer.observe(forumBody);
 

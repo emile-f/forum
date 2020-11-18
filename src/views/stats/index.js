@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./stats.css";
 import Loader from "react-loader-spinner";
 import { getUserStats } from "../../api/user";
 import { getLocations } from "../../api/location";
-import Map from "../../components/map";
+// import Map from "../../components/map";
+const Map = lazy(() => import("../../components/map"));
 
 const Stats = (props) => {
   const [stats, setStats] = useState({});
   const [locations, setLocations] = useState([]);
   const [dataAvailable, setDataAvailable] = useState(false);
 
+
+  const loader = (
+    <Loader
+      type="Puff"
+      color="#4f5d75"
+      height={100}
+      width={100}
+      className="loader"
+    />
+  );
   useEffect(() => {
     const getData = async () => {
       try {
@@ -49,17 +60,13 @@ const Stats = (props) => {
                 <li>Threads: {stats.threadCount}</li>
                 <li>Posts: {stats.postCount}</li>
               </ul>
-              <Map locations={locations} />
+              <Suspense fallback={loader}>
+                <Map locations={locations} />
+              </Suspense>
             </div>
           ) : (
-            <Loader
-              type="Puff"
-              color="#4f5d75"
-              height={100}
-              width={100}
-              className="loader"
-            />
-          )
+              loader
+            )
         }
       </div>
     </div>
