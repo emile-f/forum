@@ -67,24 +67,23 @@
   margin-right: 0;
 }
 
-.feed .pagination li {
+.feed .pagination li a {
   margin-right: 13px;
   height: 30px;
-  padding-left: 13px;
-  padding-right: 13px;
   background-color: transparent;
   border: #4f5d75 solid 1px;
   cursor: pointer;
   color: #4f5d75;
   line-height: 30px;
   user-select: none;
+  padding: 3px 13px;
 }
 
-.feed .pagination .pagination__link--active {
+.feed .pagination .pagination__link--active a {
   background-color: #4f5d75;
   color: white;
 }
-.feed .pagination .pagination__link--disabled {
+.feed .pagination .pagination__link--disabled a {
   border: #b1b1b1 solid 1px;
   color: #b1b1b1;
 }
