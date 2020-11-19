@@ -11,7 +11,6 @@ const Stats = (props) => {
   const [locations, setLocations] = useState([]);
   const [dataAvailable, setDataAvailable] = useState(false);
 
-
   const loader = (
     <Loader
       type="Puff"
@@ -65,8 +64,8 @@ const Stats = (props) => {
               </Suspense>
             </div>
           ) : (
-              loader
-            )
+            loader
+          )
         }
       </div>
     </div>

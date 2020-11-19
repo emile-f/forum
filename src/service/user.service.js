@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom";
 import { deleteCookie, getCookie, setCookie } from "./cookie.service";
 const COOKIE_NAME = "forum-user";
 // Should have the following properties
@@ -35,7 +34,7 @@ const getUser = () => {
 const logOut = () => {
   Object.assign(currentUser);
   deleteCookie(COOKIE_NAME);
-  window.location.href="/";
+  window.location.href = "/";
 };
 
 let initialLoad = false;

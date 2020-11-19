@@ -37,7 +37,6 @@ const Footer = () => {
 
   useEffect(attachResizeObserver, []);
 
-
   useEffect(() => {
     if (windowHeight > forumHeight) {
       setClassName("bottom");

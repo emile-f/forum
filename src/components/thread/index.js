@@ -16,11 +16,11 @@ const Thread = (props) => {
     <div className="container">
       <div className="content">
         <div className="subject">
-          {props.titleOfPage ?
+          {props.titleOfPage ? (
             <h1>{props.thread.subject}</h1>
-            :
+          ) : (
             <h2>{props.thread.subject}</h2>
-          }
+          )}
         </div>
         <div className="date">
           Created by {props.thread.user.name} {date}
@@ -28,11 +28,11 @@ const Thread = (props) => {
         <div className="tags">
           Tags:{" "}
           {props.thread.tags &&
-            props.thread.tags.length &&
-            Array.isArray(props.thread.tags)
+          props.thread.tags.length &&
+          Array.isArray(props.thread.tags)
             ? props.thread.tags.map((tag, index) => (
-              <span key={index}>{tag}</span>
-            ))
+                <span key={index}>{tag}</span>
+              ))
             : ""}
         </div>
       </div>
