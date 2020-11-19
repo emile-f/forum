@@ -98,7 +98,7 @@ const ThreadPage = (props) => {
         threadLoaded ? (
           // posts here
           <div>
-            <Thread clickable={false} thread={thread} />
+            <Thread titleOfPage={true} clickable={false} thread={thread} />
 
             <div className="content">
               <ReactPaginate

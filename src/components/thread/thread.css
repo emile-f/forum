@@ -33,6 +33,10 @@
   font-weight: 300;
 }
 
+.thread .container .content .subject h1 {
+  font-size: 23px;
+}
+
 /* Only hide when on feed page */
 a.thread .container .content .subject h2 {
   white-space: nowrap;
@@ -44,7 +48,7 @@ a.thread .container .content .subject h2 {
 
 .thread .container .content .date {
   font-size: 14px;
-  margin-top: -20px;
+  margin-top: -15px;
 }
 
 .thread .container .content .tags {
