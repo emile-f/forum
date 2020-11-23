@@ -21,6 +21,8 @@
 
 .new-post textarea {
   height: 150px;
+  font-family: "Open Sans", sans-serif;
+  padding: 13px;
 }
 
 .new-post .location {

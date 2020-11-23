@@ -25,9 +25,27 @@ https://johnguerra.co/classes/webDevelopment_fall_2020/ <br />
 	* For only frontend: 'npm run start-react'
 * In your web browser go to localhost:8080 to visit the forum. (3000 for backend)
 
-### project 2 last commit:
+### Project 2 last commit:
 * hash: d5b2032aebb24808930d756519730e1c04a58e19
 * url: https://github.com/emile-f/forum/tree/d5b2032aebb24808930d756519730e1c04a58e19
+
+
+### Project 3 fonts:
+* All Headings and menu's: Quicksand
+* All other content: Open Sans
+
+We found the font pairing under google fonts "Popular pairings with Quicksand".
+Google fonts page: https://fonts.google.com/specimen/Quicksand?query=quick#standard-styles
+![Image of Google fonts pairing](./Screenshots/font-pairing.png)
+
+### Project 3 colors:
+* Main text color: #000000
+* Main accent color: #4f5d75
+* Error message color: #e64b40
+* Background color: #F5F5F6
+* cards color: #FFFFFF
+
+![Image of Adobe color](./Screenshots/colors.png)
 
 ## Example screenshots: 
 

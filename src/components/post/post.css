@@ -29,10 +29,15 @@
   align-items: center;
 }
 
+.post-container .content .right {
+  font-family: "Open Sans", sans-serif;
+}
+
 .post-container .content .left p {
   font-size: 16px;
   line-height: 20px;
   margin: 0;
+  text-align: center;
 }
 
 .post-container .content .left p.date {
