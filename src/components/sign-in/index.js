@@ -74,3 +74,5 @@ const Login = (props) => {
 };
 
 export default Login;
+
+//Great work! I like the whole structure, and the code is very clean and beautiful!
