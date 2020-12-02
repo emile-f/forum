@@ -1,0 +1,11 @@
+Alex: I enjoyed reading your code. Your implementation is very organized and readable. 
+From reading your code, I learned how to structure my code better for my future projects.
+everything in your code looks very good to me. 
+
+Things you did very well
+- implemented each component on the web page separately, good for reuse.
+- the file structure of your front end and back back is very organize
+- your modularized your code 
+- very clean implementation. 
+
+ 
